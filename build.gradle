@@ -1,0 +1,38 @@
+// https://docs.gradle.org/current/userguide/groovy_plugin.html
+apply plugin: 'groovy'
+
+// https://docs.gradle.org/current/userguide/codenarc_plugin.html
+apply plugin: 'codenarc'
+
+// https://docs.gradle.org/current/userguide/idea_plugin.html
+apply plugin: 'idea'
+
+// https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow
+apply plugin: 'com.github.johnrengelman.shadow'
+
+// https://docs.gradle.org/current/userguide/organizing_build_logic.html#sec:external_dependencies
+buildscript {
+    repositories {
+        maven {
+	    url 'https://plugins.gradle.org/m2/'
+        }
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.1'
+    }
+}
+
+// https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#N10621
+repositories {
+    mavenCentral()
+}
+
+// https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#N105E1
+dependencies {
+    compile 'org.codehaus.groovy:groovy:2.4.3'
+}
+
+// https://github.com/johnrengelman/shadow
+shadowJar {
+    manifest {}
+}
