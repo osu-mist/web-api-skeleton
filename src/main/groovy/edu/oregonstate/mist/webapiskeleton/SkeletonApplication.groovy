@@ -1,4 +1,4 @@
-package edu.oregonstate.mist.webAPIskeleton
+package edu.oregonstate.mist.webapiskeleton
 
 import io.dropwizard.Application
 import io.dropwizard.Configuration
