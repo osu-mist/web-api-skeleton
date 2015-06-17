@@ -1,1 +1,10 @@
+# Gradle
 .gradle/
+
+# Dropwizard
+build/
+
+# IntelliJ IDEA
+*.iml
+*.ipr
+*.iws
