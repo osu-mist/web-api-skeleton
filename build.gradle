@@ -29,7 +29,7 @@ repositories {
 
 // https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#N105E1
 dependencies {
-    compile 'org.codehaus.groovy:groovy:2.4.3'
+    compile "org.codehaus.groovy:groovy:${groovyVersion}"
 }
 
 // https://github.com/johnrengelman/shadow
