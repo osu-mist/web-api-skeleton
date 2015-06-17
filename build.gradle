@@ -39,5 +39,9 @@ codenarc {
 
 // https://github.com/johnrengelman/shadow
 shadowJar {
-    manifest {}
+    manifest {
+        attributes 'Main-Class': "${mainClass}"
+    }
 }
+
+build.dependsOn shadowJar
