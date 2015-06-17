@@ -33,6 +33,10 @@ dependencies {
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
 }
 
+codenarc {
+    configFile = new File("config/codenarc/codenarc.groovy")
+}
+
 // https://github.com/johnrengelman/shadow
 shadowJar {
     manifest {}
