@@ -3,10 +3,16 @@
 Skeleton for Dropwizard Web APIs.
 
 
-## IntelliJ IDEA
+## Tasks
+
+### IntelliJ IDEA
 
 Generate IntelliJ IDEA project:
 
     $ gradle idea
 
 Open with `File` -> `Open Project`.
+
+### Build
+
+    $ gradle build
