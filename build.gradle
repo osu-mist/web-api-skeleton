@@ -42,6 +42,7 @@ shadowJar {
     manifest {
         attributes 'Main-Class': "${mainClass}"
     }
+    mergeServiceFiles()
 }
 
 build.dependsOn shadowJar
