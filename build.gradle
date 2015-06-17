@@ -30,6 +30,7 @@ repositories {
 // https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#N105E1
 dependencies {
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
+    compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
 }
 
 // https://github.com/johnrengelman/shadow
