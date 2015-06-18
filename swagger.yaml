@@ -1,0 +1,21 @@
+swagger: '2.0'
+info:
+  title: Web API Skeleton
+  description: Skeleton for Dropwizard Web APIs
+  version: '0.0'
+externalDocs:
+  description: GitHub Repository
+  url: https://github.com/osu-mist/web-api-skeleton
+host: localhost
+schemes:
+  - http
+paths:
+  /:
+    get:
+      summary: Sample Resource
+      description: This is a sample resource that returns a short message.
+      responses:
+        200:
+          description: A short message
+          schema:
+            type: string
