@@ -8,3 +8,6 @@ build/
 *.iml
 *.ipr
 *.iws
+
+# Mac OS X
+.DS_Store
