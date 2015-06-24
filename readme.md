@@ -29,7 +29,7 @@ JARs [will be saved](https://github.com/johnrengelman/shadow#using-the-default-p
 
 Run the project:
 
-    $ java -jar build/libs/web-api-skeleton-all.jar server configuration.yaml
+    $ gradle run
 
 
 ## Resources

@@ -46,3 +46,10 @@ shadowJar {
 }
 
 build.dependsOn shadowJar
+
+// FIXME: use ShadowJar (java -jar build/libs/web-api-skeleton-all.jar server configuration.yaml)
+task run(type: JavaExec, dependsOn: build) {
+    main = "${mainClass}"
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['server', 'configuration.yaml']
+}
