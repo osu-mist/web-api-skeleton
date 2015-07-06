@@ -6,7 +6,9 @@ ruleset {
 
     /* class name starts with an uppercase letter and is followed by zero or
        more word characters or dollar signs */
-    ClassName
+    ClassName {
+        regex = /^([A-Z]\w*$?)*$/
+    }
 
     /* method name starts with a lowercase letter */
     MethodName
