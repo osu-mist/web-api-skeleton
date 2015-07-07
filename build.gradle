@@ -37,6 +37,10 @@ codenarc {
     configFile = new File("config/codenarc/codenarc.groovy")
 }
 
+tasks.withType(CodeNarc) {
+    maxPriority3Violations = 3
+}
+
 // https://github.com/johnrengelman/shadow
 shadowJar {
     manifest {
