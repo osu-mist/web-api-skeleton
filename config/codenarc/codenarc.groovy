@@ -9,8 +9,8 @@ ruleset {
     ClassName {
         regex = '''(?x)
                    ^(
-                     (?!(SkeletonApplication|Sample|SampleResource)) # fail on skeleton class names
-                     ([A-Z]\\w*$?)*                                  # codenarc default
+                     (?!(SkeletonApplication|Sample|SampleResource)$) # fail on skeleton class names
+                     ([A-Z]\\w*$?)*                                   # codenarc default
                    )$
                 '''
         priority = 3
