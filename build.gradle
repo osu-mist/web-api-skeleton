@@ -37,6 +37,7 @@ codenarc {
     configFile = new File("config/codenarc/codenarc.groovy")
 }
 
+// TODO: version jars by commit
 // https://github.com/johnrengelman/shadow
 shadowJar {
     manifest {
