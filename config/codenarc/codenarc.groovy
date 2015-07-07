@@ -18,7 +18,17 @@ ruleset {
     /* method name starts with a lowercase letter */
     MethodName
 
-    /* package name consists only of lowercase letters and numbers, separated
-       by periods */
-    PackageName
+    PackageName {
+        description = 'Verify that package name begins with \'edu.oregonstate.mist.\' and consists ' +
+                      'only of lowercase letters and numbers separated by periods, warning if ' +
+                      'skeleton code is unchanged.'
+        regex = '''(?x)
+                   ^(
+                     edu\\.oregonstate\\.mist # begin with edu.oregonstate.mist
+                     (?!\\.webapiskeleton)    # fail on skeleton package name
+                     (\\.[a-z0-9]+)*          # periods separate lowercase alphanumeric package names
+                   )$'''
+        packageNameRequired = true
+        priority = 3
+    }
 }

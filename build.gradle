@@ -38,7 +38,7 @@ codenarc {
 }
 
 tasks.withType(CodeNarc) {
-    maxPriority3Violations = 3
+    maxPriority3Violations = 6
 }
 
 // https://github.com/johnrengelman/shadow
