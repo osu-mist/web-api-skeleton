@@ -4,9 +4,9 @@
 ruleset {
     description 'MIST Groovy RuleSet'
 
-    /* class name starts with an uppercase letter and is followed by zero or
-       more word characters or dollar signs */
     ClassName {
+        description = 'Verify that class name starts with an uppercase letter followed by zero or ' +
+                      'more word characters or dollar signs, warning if skeleton code is unchanged.'
         regex = '''(?x)
                    ^(
                      (?!(SkeletonApplication|Sample|SampleResource)$) # fail on skeleton class names
