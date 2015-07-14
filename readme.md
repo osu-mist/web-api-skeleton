@@ -32,9 +32,8 @@ Run the project:
     $ gradle run
 
 
-## Create/Merge your project with the skeleton code
+## Base an Existing Project off the Skeleton
 
-If you'd like to base your existing project with the skeleton code, the following steps will help you simplifiy your git repo:
 1. Clone the skeleton to your local repository
 
         $ git clone {URL}
