@@ -57,7 +57,6 @@ Run the project:
         git branch -m <oldname> <newname>
         e.g. $ git branch -m master master-old
 
-Confusing much? Yes I know, but it'll be worth it later.
 
 ## Resources
 
