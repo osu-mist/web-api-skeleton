@@ -34,28 +34,20 @@ Run the project:
 
 ## Base an Existing Project off the Skeleton
 
-1. Clone the skeleton to your local repository
+1. Add the skeleton as a remote:
 
-        $ git clone {URL}
-        e.g. $ git clone https://github.com/osu-mist/web-api-skeleton.git
+        $ git remote add skeleton https://github.com/osu-mist/web-api-skeleton.git
 
-2. Rename your cloned repo's branches to avoid any naming conflicts
+2. Create a branch to track the skeleton:
 
-        git branch -m <oldname> <newname>
-        e.g. $ git branch -m master skeleton-master
+        $ git checkout -b skeleton-master skeleton/master
 
-3. Create master, develop, and feature branches.  You can do this either on Github or in your terminal window.
+3. Merge the skeleton into your codebase:
 
-        git branch <BranchName>
-        e.g.
-        $ git branch master
-        $ git branch develop
-        $ git branch feature
-
-4. Backup any existing code you may have from your old repo.
-
-        git branch -m <oldname> <newname>
-        e.g. $ git branch -m master master-old
+        $ git checkout feature/abc-123-branch
+        $ git merge skeleton-master
+        ...
+        $ git commit -v
 
 
 ## Resources
