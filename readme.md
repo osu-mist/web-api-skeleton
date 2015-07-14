@@ -35,33 +35,28 @@ Run the project:
 ## Create/Merge your project with the skeleton code
 
 If you'd like to base your existing project with the skeleton code, the following steps will help you simplifiy your git repo:
+1. Clone the skeleton to your local repository
 
-1. Clone the skeleton to your local repository.
-```
-git clone {URL}
-e.g. $ git clone https://github.com/osu-mist/web-api-skeleton.git
-```
+        $ git clone {URL}
+        e.g. $ git clone https://github.com/osu-mist/web-api-skeleton.git
 
 2. Rename your cloned repo's branches to avoid any naming conflicts
-```
-git branch -m <oldname> <newname>
-e.g. $ git branch -m master skeleton-master
-```
+
+        git branch -m <oldname> <newname>
+        e.g. $ git branch -m master skeleton-master
 
 3. Create master, develop, and feature branches.  You can do this either on Github or in your terminal window.
-```
-git branch <BranchName>
-e.g.
-$ git branch master
-$ git branch develop
-$ git branch feature
-```
+
+        git branch <BranchName>
+        e.g.
+        $ git branch master
+        $ git branch develop
+        $ git branch feature
 
 4. Backup any existing code you may have from your old repo.
-```
-git branch -m <oldname> <newname>
-e.g. $ git branch -m master master-old
-```
+
+        git branch -m <oldname> <newname>
+        e.g. $ git branch -m master master-old
 
 Confusing much? Yes I know, but it'll be worth it later.
 
