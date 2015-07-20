@@ -8,7 +8,6 @@ import javax.ws.rs.core.MediaType
 
 @Path('/')
 class SampleResource {
-
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String respond() {

@@ -7,7 +7,6 @@ import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
 
 class SkeletonApplication extends Application<Configuration>{
-
     @Override
     public void initialize(Bootstrap<Configuration> bootstrap) {}
 
