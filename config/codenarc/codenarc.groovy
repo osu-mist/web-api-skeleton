@@ -25,9 +25,7 @@ ruleset {
     IfStatementBraces
 
     /* Checks that else blocks use braces, even for a single statement. */
-    ElseBlockBraces {
-        bracesRequiredForElseIf = true
-    }
+    ElseBlockBraces
 
     /* Checks that for statements use braces, even for a single statement. */
     ForStatementBraces
