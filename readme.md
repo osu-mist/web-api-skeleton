@@ -62,7 +62,7 @@ Update local branch:
     $ git fetch skeleton
     $ git pull
 
-Note that changes to CodeNarc configuration may introduce build failures.
+Merge the updates into your codebase as before. Note that changes to CodeNarc configuration may introduce build failures.
 
 
 ## Resources
