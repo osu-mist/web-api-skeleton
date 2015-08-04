@@ -51,6 +51,20 @@ Run the project:
         $ git commit -v
 
 
+## Incorporate Updates from the Skeleton
+
+Ensure that branch `skeleton-master` is tracking remote `skeleton`:
+
+    $ git branch -u skeleton/master skeleton-master
+
+Update local branch:
+
+    $ git fetch skeleton
+    $ git pull
+
+Note that changes to CodeNarc configuration may introduce build failures.
+
+
 ## Resources
 
 The Web API definition is contained in the [Swagger specification](swagger.yaml).
