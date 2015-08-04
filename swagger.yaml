@@ -9,6 +9,7 @@ externalDocs:
 host: localhost
 schemes:
   - http
+basePath: /api/v0
 paths:
   /:
     get:

@@ -74,7 +74,7 @@ The Web API definition is contained in the [Swagger specification](swagger.yaml)
 This sample resource returns a short message:
 
     $ nc localhost 8008 << HERE
-    > GET / HTTP/1.0
+    > GET /api/v0/ HTTP/1.0
     > 
     > HERE
     HTTP/1.1 200 OK
