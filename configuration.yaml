@@ -1,5 +1,49 @@
+### Dropwizard skeleton configuration file
+##
+## Do not commit changes that contain credentials or sensitive data!
+
 server:
   applicationConnectors:
     - type: http
       port: 8008
       bindHost: localhost
+#
+## Example HTTPS configuration
+#
+#   - type: https
+#     port: 8443
+#     keyStorePath: example.keystore
+#     keyStorePassword: example
+#     validateCerts: false
+
+#
+## Example log configuration
+#
+#logging:
+#  loggers:
+#      org.hibernate.SQL: ALL
+#  appenders:
+#    - type: console
+#      threshold: DEBUG
+#      target: stdout
+#    - type: file
+#      currentLogFilename: logs/web-api-skeleton.log
+#      archivedLogFilenamePattern: logs/web-api-skeleton-%d.log.gz
+#      archivedFileCount: 5
+#      threshold: ALL
+#      timeZone: UTC
+
+#
+## Example Oracle configuration
+#
+#database:
+#  driverClass: oracle.jdbc.OracleDriver
+#  user: Username
+#  password: Password
+#  url: jdbc:oracle:thin:@(DESCRIPTION=(LOAD_BALANCE=ON) (ADDRESS=(PROTOCOL=TCP)(Host=db1.example.com)(Port=1521)) (ADDRESS=(PROTOCOL=TCP)(Host=db2.example.com)(Port=1521)) (CONNECT_DATA=(SERVICE_NAME=example.db)))
+#  properties:
+#    hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
+#  validationQuery: "SELECT 1 FROM dual"
+#  initialSize: 2
+#  minSize: 1
+#  maxSize: 5
