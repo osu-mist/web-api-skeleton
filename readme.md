@@ -37,6 +37,7 @@ Run the project:
 1. Add the skeleton as a remote:
 
         $ git remote add skeleton https://github.com/osu-mist/web-api-skeleton.git
+        $ git fetch skeleton
 
 2. Create a branch to track the skeleton:
 
