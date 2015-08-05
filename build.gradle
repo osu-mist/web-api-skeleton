@@ -41,6 +41,7 @@ tasks.withType(CodeNarc) {
     maxPriority3Violations = 6
 }
 
+// TODO: version jars by commit
 // https://github.com/johnrengelman/shadow
 shadowJar {
     manifest {

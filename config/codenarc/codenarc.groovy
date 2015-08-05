@@ -31,4 +31,11 @@ ruleset {
         packageNameRequired = true
         priority = 3
     }
+
+    /* package name consists only of lowercase letters and numbers, separated
+       by periods */
+    PackageName
+
+    /* semicolons as line terminators are not required in Groovy */
+    UnnecessarySemicolon
 }
