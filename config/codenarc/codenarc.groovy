@@ -17,4 +17,19 @@ ruleset {
 
     /* semicolons as line terminators are not required in Groovy */
     UnnecessarySemicolon
+
+    /* If a statement is the last line in a method or closure then you do not need to have the return keyword. */
+    UnnecessaryReturnKeyword
+
+    /* Checks that if statements use braces, even for a single statement. */
+    IfStatementBraces
+
+    /* Checks that else blocks use braces, even for a single statement. */
+    ElseBlockBraces
+
+    /* Checks that for statements use braces, even for a single statement. */
+    ForStatementBraces
+
+    /* Checks that while statements use braces, even for a single statement. */
+    WhileStatementBraces
 }
