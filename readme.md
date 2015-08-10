@@ -34,20 +34,35 @@ Run the project:
 
 ## Base an Existing Project off the Skeleton
 
-1. Add the skeleton as a remote:
+Add the skeleton as a remote:
 
-        $ git remote add skeleton https://github.com/osu-mist/web-api-skeleton.git
+    $ git remote add skeleton https://github.com/osu-mist/web-api-skeleton.git
+    $ git fetch skeleton
 
-2. Create a branch to track the skeleton:
+Create a branch to track the skeleton:
 
-        $ git checkout -b skeleton-master skeleton/master
+    $ git checkout -b skeleton-master skeleton/master
 
-3. Merge the skeleton into your codebase:
+Merge the skeleton into your codebase:
 
-        $ git checkout feature/abc-123-branch
-        $ git merge skeleton-master
-        ...
-        $ git commit -v
+    $ git checkout feature/abc-123-branch
+    $ git merge skeleton-master
+    ...
+    $ git commit -v
+
+
+## Incorporate Updates from the Skeleton
+
+Ensure that branch `skeleton-master` is tracking remote `skeleton`:
+
+    $ git branch -u skeleton/master skeleton-master
+
+Update local branch:
+
+    $ git fetch skeleton
+    $ git pull
+
+Merge the updates into your codebase as before. Note that changes to CodeNarc configuration may introduce build failures.
 
 
 ## Resources
@@ -59,7 +74,7 @@ The Web API definition is contained in the [Swagger specification](swagger.yaml)
 This sample resource returns a short message:
 
     $ nc localhost 8008 << HERE
-    > GET / HTTP/1.0
+    > GET /api/v0/ HTTP/1.0
     > 
     > HERE
     HTTP/1.1 200 OK

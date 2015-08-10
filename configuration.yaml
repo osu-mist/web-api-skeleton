@@ -3,6 +3,7 @@
 ## Do not commit changes that contain credentials or sensitive data!
 
 server:
+  rootPath: /api/v0/*
   applicationConnectors:
     - type: http
       port: 8008
