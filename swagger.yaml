@@ -13,13 +13,31 @@ host: localhost
 schemes:
   - http
 basePath: /api/v0
+consumes:
+  - text/plain
+produces:
+  - text/plain
 paths:
   /:
     get:
-      summary: Sample Resource
+      summary: Get message
       description: This is a sample resource that returns a short message.
       responses:
         200:
           description: A short message
+          schema:
+            type: string
+    post:
+      summary: Post message
+      description: This is a sample resource that returns the message it receives.
+      parameters:
+        - name: message
+          in: body
+          schema:
+            type: string
+          required: true
+      responses:
+        200:
+          description: The message received
           schema:
             type: string
