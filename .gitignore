@@ -3,6 +3,7 @@
 
 # Dropwizard
 build/
+logs/
 
 # IntelliJ IDEA
 *.iml
