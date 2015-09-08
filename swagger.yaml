@@ -27,6 +27,10 @@ paths:
           description: A short message
           schema:
             type: string
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/Error'
     post:
       summary: Post message
       description: This is a sample resource that returns the message it receives.
@@ -41,3 +45,20 @@ paths:
           description: The message received
           schema:
             type: string
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Error:
+    properties:
+      status:
+        type: integer
+      developerMessage:
+        type: string
+      userMesage:
+        type: string
+      code:
+        type: integer
+      details:
+        type: string
