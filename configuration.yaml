@@ -17,22 +17,19 @@ server:
 #     keyStorePassword: example
 #     validateCerts: false
 
-#
-## Example log configuration
-#
-#logging:
-#  loggers:
-#      org.hibernate.SQL: ALL
-#  appenders:
-#    - type: console
-#      threshold: DEBUG
-#      target: stdout
-#    - type: file
-#      currentLogFilename: logs/web-api-skeleton.log
-#      archivedLogFilenamePattern: logs/web-api-skeleton-%d.log.gz
-#      archivedFileCount: 5
-#      threshold: ALL
-#      timeZone: UTC
+logging:
+  loggers:
+      org.hibernate.SQL: ALL
+  appenders:
+    - type: console
+      threshold: ALL
+      target: stdout
+    - type: file
+      currentLogFilename: logs/web-api-skeleton.log
+      archivedLogFilenamePattern: logs/web-api-skeleton-%d.log.gz
+      archivedFileCount: 5
+      threshold: ALL
+      timeZone: PST
 
 #
 ## Example Oracle configuration
