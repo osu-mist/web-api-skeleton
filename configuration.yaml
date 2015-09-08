@@ -8,6 +8,9 @@ server:
     - type: http
       port: 8008
       bindHost: localhost
+  adminConnectors:
+    - type: http
+      port: 8081
 #
 ## Example HTTPS configuration
 #
