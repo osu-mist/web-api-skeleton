@@ -54,12 +54,12 @@ server:
 #  useFairQueue: true
 #  initialSize: 10
 #  minSize: 10
-#  maxSize: 100
+#  maxSize: 20
 #  initializationQuery: # none
 #  logAbandonedConnections: true
 #  logValidationErrors: true
 #  maxConnectionAge: # none
-#  maxWaitForConnection: 30 # seconds
+#  maxWaitForConnection: 1 # second
 #  minIdleTime: 1 # minute
 #  validationQuery: "SELECT 1 FROM dual"
 #  validationQueryTimeout: # none
