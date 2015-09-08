@@ -3,6 +3,9 @@ info:
   title: Web API Skeleton
   description: Skeleton for Dropwizard Web APIs
   version: '0.0'
+  license:
+    name: GNU Affero General Public License Version 3
+    url: http://www.gnu.org/licenses/agpl-3.0.en.html
 externalDocs:
   description: GitHub Repository
   url: https://github.com/osu-mist/web-api-skeleton
