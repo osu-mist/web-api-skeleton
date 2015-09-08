@@ -32,6 +32,8 @@ repositories {
 
 // https://docs.gradle.org/current/userguide/artifact_dependencies_tutorial.html#N105E1
 dependencies {
+    testCompile "junit:junit:4.12"
+    testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
