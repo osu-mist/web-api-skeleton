@@ -53,6 +53,8 @@ jar {
 
 // https://github.com/johnrengelman/shadow
 shadowJar {
+    appendix = jar.appendix
+    version = jar.version
     manifest {
         attributes 'Main-Class': "${mainClass}"
     }
