@@ -73,13 +73,32 @@ The Web API definition is contained in the [Swagger specification](swagger.yaml)
 
 This sample resource returns a short message:
 
-    $ nc localhost 8008 << HERE
+    $ nc localhost 8080 << HERE
     > GET /api/v0/ HTTP/1.0
     > 
     > HERE
     HTTP/1.1 200 OK
-    Date: Mon, 20 Jul 2015 21:51:49 GMT
+    Date: Wed, 09 Sep 2015 20:47:45 GMT
     Content-Type: text/plain
     Content-Length: 11
     
     hello world
+
+### POST /
+
+This sample resource returns the request message:
+
+    $ nc localhost 8080 << HERE
+    > POST /api/v0/ HTTP/1.0
+    > Content-Type: text/plain
+    > Content-Length: 14
+    > 
+    > goodbye world
+    > 
+    > HERE
+    HTTP/1.1 200 OK
+    Date: Wed, 09 Sep 2015 20:48:46 GMT
+    Content-Type: text/plain
+    Content-Length: 14
+    
+    goodbye world
