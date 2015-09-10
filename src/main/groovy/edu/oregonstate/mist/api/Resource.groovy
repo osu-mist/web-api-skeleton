@@ -1,5 +1,6 @@
 package edu.oregonstate.mist.api
 
+import static edu.oregonstate.mist.api.Language.translate
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.Response.ResponseBuilder
 
@@ -40,7 +41,7 @@ abstract class Resource {
         responseBuilder.entity(new Error(
                 status: 400,
                 developerMessage: message,
-                userMessage: 'Bad Request',
+                userMessage: translate('Bad Request'),
                 code: 1400,
                 details: 'http://example.com/errors/1400'
         ))
@@ -55,8 +56,8 @@ abstract class Resource {
         ResponseBuilder responseBuilder = Response.status(Response.Status.NOT_FOUND)
         responseBuilder.entity(new Error(
                 status: 404,
-                developerMessage: 'Not Found',
-                userMessage: 'Not Found',
+                developerMessage: translate('Not Found'),
+                userMessage: translate('Not Found'),
                 code: 1404,
                 details: 'http://example.com/errors/1404'
         ))
