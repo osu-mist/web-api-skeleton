@@ -4,6 +4,7 @@
 # Dropwizard
 build/
 logs/
+configuration.yaml
 
 # IntelliJ IDEA
 *.iml
