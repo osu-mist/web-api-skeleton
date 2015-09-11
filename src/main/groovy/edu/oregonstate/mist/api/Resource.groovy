@@ -7,6 +7,12 @@ import javax.ws.rs.core.Response.ResponseBuilder
  * Abstract class for reusing common response messages.
  */
 abstract class Resource {
+    protected static Properties properties = new Properties()
+
+    public static loadProperties(String fileName) {
+        properties.load(new FileReader(fileName))
+    }
+
     /**
      * Returns a builder for an HTTP 200 ("ok") response with the argument entity as body.
      *
@@ -40,9 +46,9 @@ abstract class Resource {
         responseBuilder.entity(new Error(
                 status: 400,
                 developerMessage: message,
-                userMessage: 'Bad Request',
-                code: 1400,
-                details: 'http://example.com/errors/1400'
+                userMessage: properties.get('badRequest.userMessage'),
+                code: (Integer)properties.get('badRequest.code'),
+                details: properties.get('badRequest.details')
         ))
     }
 
@@ -55,10 +61,10 @@ abstract class Resource {
         ResponseBuilder responseBuilder = Response.status(Response.Status.NOT_FOUND)
         responseBuilder.entity(new Error(
                 status: 404,
-                developerMessage: 'Not Found',
-                userMessage: 'Not Found',
-                code: 1404,
-                details: 'http://example.com/errors/1404'
+                developerMessage: properties.get('notFound.developerMessage'),
+                userMessage: properties.get('notFound.userMessage'),
+                code: (Integer)properties.get('notFound.code'),
+                details: properties.get('notFound.details')
         ))
     }
 }
