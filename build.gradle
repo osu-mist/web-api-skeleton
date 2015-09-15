@@ -61,7 +61,8 @@ shadowJar {
     mergeServiceFiles()
 }
 
-build.dependsOn shadowJar
+// https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html
+build.dependsOn shadowJar, groovydoc
 
 // FIXME: use ShadowJar (java -jar build/libs/web-api-skeleton-all.jar server configuration.yaml)
 task run(type: JavaExec, dependsOn: build) {
