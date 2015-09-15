@@ -47,14 +47,21 @@ codenarc {
 // https://docs.gradle.org/current/userguide/java_plugin.html#N12B9A
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html
 jar {
+    baseName = project.archivesBaseName
     appendix = System.currentTimeMillis()
     version = 'git log -n1 --format=format:%h'.execute().getText()
+    extension = 'jar'
+    archiveName = "${baseName}-${appendix}-${version}.${extension}"
 }
 
 // https://github.com/johnrengelman/shadow
 shadowJar {
+    baseName = jar.baseName
     appendix = jar.appendix
     version = jar.version
+    classifier = 'all'
+    extension = jar.extension
+    archiveName = "${baseName}-${appendix}-${version}-${classifier}.${extension}"
     manifest {
         attributes 'Main-Class': "${mainClass}"
     }
