@@ -12,6 +12,6 @@ class SampleResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String respond() {
         Sample object = new Sample()
-        return object.message
+        object.message
     }
 }
