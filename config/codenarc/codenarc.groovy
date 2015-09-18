@@ -32,4 +32,7 @@ ruleset {
 
     /* Checks that while statements use braces, even for a single statement. */
     WhileStatementBraces
+
+    /* Makes sure there are no consecutive lines that are either blank or whitespace only. */
+    ConsecutiveBlankLines
 }
