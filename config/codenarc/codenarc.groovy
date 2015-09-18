@@ -35,4 +35,10 @@ ruleset {
 
     /* Makes sure there are no consecutive lines that are either blank or whitespace only. */
     ConsecutiveBlankLines
+
+    /* Check that there is at least one space before each opening brace */
+    SpaceBeforeOpeningBrace
+
+    /* Check that there is at least one space after each closing brace */
+    SpaceAfterClosingBrace
 }
