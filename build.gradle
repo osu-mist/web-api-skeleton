@@ -34,6 +34,7 @@ repositories {
 dependencies {
     testCompile "junit:junit:4.12"
     testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
+    codenarc "org.codenarc:CodeNarc:${codenarcVersion}"
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
