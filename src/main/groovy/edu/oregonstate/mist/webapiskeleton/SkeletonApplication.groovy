@@ -1,6 +1,9 @@
 package edu.oregonstate.mist.webapiskeleton
 
 import edu.oregonstate.mist.api.Resource
+import edu.oregonstate.mist.api.NotFoundMapper
+import edu.oregonstate.mist.api.WebApplicationExceptionMapper
+import edu.oregonstate.mist.api.ExceptionMapper
 import edu.oregonstate.mist.webapiskeleton.resources.SampleResource
 import io.dropwizard.Application
 import io.dropwizard.Configuration
@@ -29,6 +32,9 @@ class SkeletonApplication extends Application<Configuration> {
     public void run(Configuration configuration, Environment environment) {
         Resource.loadProperties('resource.properties')
         environment.jersey().register(new SampleResource())
+        environment.jersey().register(new NotFoundMapper())
+        environment.jersey().register(new WebApplicationExceptionMapper())
+        environment.jersey().register(new ExceptionMapper())
     }
 
     /**
