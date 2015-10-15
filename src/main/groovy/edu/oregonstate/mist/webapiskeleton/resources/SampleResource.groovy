@@ -14,7 +14,7 @@ import javax.ws.rs.core.MediaType
 /**
  * Sample resource class.
  */
-@Path('/')
+@Path('/sample/')
 class SampleResource extends Resource {
     /**
      * Responds to GET requests by returning a message.

@@ -13,3 +13,6 @@ configuration.yaml
 
 # Mac OS X
 .DS_Store
+
+# Build Properties
+build.properties

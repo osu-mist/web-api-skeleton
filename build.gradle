@@ -35,6 +35,7 @@ dependencies {
     testCompile "junit:junit:4.12"
     testCompile "io.dropwizard:dropwizard-testing:${dropwizardVersion}"
     codenarc "org.codenarc:CodeNarc:${codenarcVersion}"
+    compile 'org.yaml:snakeyaml:1.16'
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
@@ -68,6 +69,15 @@ shadowJar {
     }
     mergeServiceFiles()
 }
+
+// write build properties to file
+Properties properties = new Properties()
+properties.setProperty('name', jar.baseName)
+properties.setProperty('time', jar.appendix)
+properties.setProperty('commit', jar.version)
+properties.setProperty('documentation', 'swagger.yaml')
+FileWriter fileWriter = new FileWriter('build.properties')
+properties.store(fileWriter, 'build properties')
 
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html
 build.dependsOn shadowJar, groovydoc

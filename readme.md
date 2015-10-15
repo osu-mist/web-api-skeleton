@@ -75,10 +75,25 @@ The Web API definition is contained in the [Swagger specification](swagger.yaml)
 
 ### GET /
 
+This resource returns build and runtime information:
+
+    $ nc localhost 8888 << HERE
+    > GET /api/v0/ HTTP/1.0
+    > 
+    > HERE
+    HTTP/1.1 200 OK
+    Date: Thu, 15 Oct 2015 17:42:33 GMT
+    Content-Type: application/json
+    Content-Length: 113
+    
+    {"name":"web-api-skeleton","time":1444930929595,"commit":"942c7a2","admin":8081,"documentation":"swagger.yaml"}
+
+### GET /sample
+
 This sample resource returns a short message:
 
     $ nc localhost 8080 << HERE
-    > GET /api/v0/ HTTP/1.0
+    > GET /api/v0/sample HTTP/1.0
     > 
     > HERE
     HTTP/1.1 200 OK
@@ -88,12 +103,12 @@ This sample resource returns a short message:
     
     hello world
 
-### POST /
+### POST /sample
 
 This sample resource returns the request message:
 
     $ nc localhost 8080 << HERE
-    > POST /api/v0/ HTTP/1.0
+    > POST /api/v0/sample HTTP/1.0
     > Content-Type: text/plain
     > Content-Length: 14
     > 
