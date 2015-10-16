@@ -20,6 +20,15 @@ produces:
 paths:
   /:
     get:
+      summary: Get information
+      description: Build and runtime information about the application.
+      responses:
+        200:
+          description: Object containing information
+          schema:
+            $ref: '#/definitions/Info'
+  /sample:
+    get:
       summary: Get message
       description: This is a sample resource that returns a short message.
       responses:
@@ -50,6 +59,18 @@ paths:
           schema:
             $ref: '#/definitions/Error'
 definitions:
+  Info:
+    properties:
+      name:
+        type: string
+      time:
+        type: integer
+      commit:
+        type: string
+      admin:
+        type: integer
+      documentation:
+        type: string
   Error:
     properties:
       status:
