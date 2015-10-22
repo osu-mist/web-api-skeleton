@@ -17,6 +17,45 @@ Generate IntelliJ IDEA project:
 
 Open with `File` -> `Open Project`.
 
+### Generate Keys
+
+HTTPS is required for Web APIs in development and production. Use `keytool(1)` to generate public and private keys.
+
+Generate key pair and keystore:
+
+    $ keytool \
+        -genkey \
+        -dname "CN=Jane Doe, OU=Enterprise Computing Services, O=Oregon State University, L=Corvallis, S=Oregon, C=US" \
+        -alias "doej" \
+        -keyalg "RSA" \
+        -keysize 2048 \
+        -validity 365 \
+        -keystore doej.keystore
+
+Create self-signed certificate:
+
+    $ keytool \
+        -selfcert \
+        -alias "doej" \
+        -sigalg "SHA256withRSA" \
+        -keystore doej.keystore
+
+Export certificate to file:
+
+    $ keytool \
+        -export \
+        -alias "doej" \
+        -keystore doej.keystore \
+        -file doej.cer
+
+Import certificate into truststore:
+
+    $ keytool \
+        -import \
+        -alias "doej" \
+        -file doej.cer \
+        -keystore doej.truststore
+
 ### Configure
 
 Copy [configuration-example.yaml](configuration-example.yaml) to `configuration.yaml`. Modify as necessary, being careful to avoid committing sensitive data.
