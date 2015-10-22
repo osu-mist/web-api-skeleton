@@ -5,19 +5,25 @@
 server:
   rootPath: /api/v0/*
   applicationConnectors:
-    - type: http
+    - type: https
       port: 8080
+      keyStorePath: /path/to/development.keystore
+      keyStorePassword: password
+      certAlias: development
+      trustStorePath: /path/to/development.truststore
+      supportedProtocols:
+        - TLSv1.1
+        - TLSv1.2
   adminConnectors:
-    - type: http
+    - type: https
       port: 8081
-#
-## Example HTTPS configuration
-#
-#   - type: https
-#     port: 8443
-#     keyStorePath: example.keystore
-#     keyStorePassword: example
-#     validateCerts: false
+      keyStorePath: /path/to/development.keystore
+      keyStorePassword: password
+      certAlias: development
+      trustStorePath: /path/to/development.truststore
+      supportedProtocols:
+        - TLSv1.1
+        - TLSv1.2
 
 logging:
   loggers:
