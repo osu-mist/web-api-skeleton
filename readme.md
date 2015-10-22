@@ -17,6 +17,10 @@ Generate IntelliJ IDEA project:
 
 Open with `File` -> `Open Project`.
 
+### Configure
+
+Copy [configuration-example.yaml](configuration-example.yaml) to `configuration.yaml`. Modify as necessary, being careful to avoid committing sensitive data.
+
 ### Build
 
 Build the project:
@@ -24,10 +28,6 @@ Build the project:
     $ gradle build
 
 JARs [will be saved](https://github.com/johnrengelman/shadow#using-the-default-plugin-task) into the directory `build/libs/`.
-
-### Configure
-
-Copy [configuration-example.yaml](configuration-example.yaml) to `configuration.yaml`. Modify as necessary, being careful to avoid committing sensitive data.
 
 ### Run
 
