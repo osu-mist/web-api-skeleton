@@ -9,6 +9,12 @@ import com.google.common.base.Optional
  * Class which authenticates user-provided credentials.
  */
 class BasicAuthenticator implements Authenticator<BasicCredentials, AuthenticatedUser> {
+    private List<Credentials> credentialsList
+
+    public BasicAuthenticator(List<Credentials> credentialsList) {
+        this.credentialsList = credentialsList
+    }
+
     public Optional<AuthenticatedUser> authenticate(BasicCredentials basicCredentials)
             throws AuthenticationException {
         if (valid(basicCredentials)) {
@@ -18,9 +24,16 @@ class BasicAuthenticator implements Authenticator<BasicCredentials, Authenticate
         }
     }
 
-    // TODO: read credentials from configuration file
     private Boolean valid(BasicCredentials basicCredentials) {
-        ((basicCredentials.username == 'username')
-                && (basicCredentials.password == 'password'))
+        Iterator<Credentials> iterator = credentialsList.iterator()
+        Credentials credentials
+        while (iterator.hasNext()) {
+            credentials = iterator.next()
+            if ((basicCredentials.username == credentials.getUsername())
+                    && (basicCredentials.password == credentials.getPassword())) {
+                return true
+            }
+        }
+        false
     }
 }

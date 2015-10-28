@@ -39,6 +39,10 @@ logging:
       threshold: ALL
       timeZone: PST
 
+authentication:
+  - username: username
+    password: password
+
 #
 ## Example Oracle configuration
 #
