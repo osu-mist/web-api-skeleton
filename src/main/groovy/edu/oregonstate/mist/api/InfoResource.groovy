@@ -1,5 +1,6 @@
 package edu.oregonstate.mist.api
 
+import io.dropwizard.auth.Auth
 import javax.ws.rs.Path
 import javax.ws.rs.GET
 import javax.ws.rs.Produces
@@ -20,7 +21,7 @@ class InfoResource extends Resource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getInfo() {
+    public Response getInfo(@Auth AuthenticatedUser authenticatedUser) {
         ok(info).build()
     }
 }
