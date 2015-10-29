@@ -30,8 +30,8 @@ class BasicAuthenticator implements Authenticator<BasicCredentials, Authenticate
         Credentials credentials
         while (iterator.hasNext()) {
             credentials = iterator.next()
-            if ((basicCredentials.username == credentials.getUsername())
-                    && (basicCredentials.password == credentials.getPassword())) {
+            if ((basicCredentials.username == credentials.username)
+                    && (basicCredentials.password == credentials.password)) {
                 return true
             }
         }
