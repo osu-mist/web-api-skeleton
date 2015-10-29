@@ -190,7 +190,7 @@ This resource returns build and runtime information:
     Content-Type: application/json
     Content-Length: 111
     
-    {"name":"web-api-skeleton","time":1445964601991,"commit":"f08ce22","admin":8081,"documentation":"swagger.yaml"}closed
+    {"name":"web-api-skeleton","time":1445964601991,"commit":"f08ce22","documentation":"swagger.yaml"}closed
 
 ### GET /sample
 
