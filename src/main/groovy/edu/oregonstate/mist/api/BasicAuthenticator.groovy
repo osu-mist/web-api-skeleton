@@ -15,6 +15,7 @@ class BasicAuthenticator implements Authenticator<BasicCredentials, Authenticate
         this.credentialsList = credentialsList
     }
 
+    @Override
     public Optional<AuthenticatedUser> authenticate(BasicCredentials basicCredentials)
             throws AuthenticationException {
         if (valid(basicCredentials)) {
