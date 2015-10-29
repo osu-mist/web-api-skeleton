@@ -67,8 +67,6 @@ definitions:
         type: integer
       commit:
         type: string
-      admin:
-        type: integer
       documentation:
         type: string
   Error:
