@@ -43,7 +43,7 @@ Import certificate into truststore:
 
 ## Gradle
 
-If you are already familiar with gradle, or have it installed on your system feel free to skip ahead to the next section in the documentation.
+If you are already familiar with Gradle, or have it installed on your system feel free to skip ahead to the next section in the documentation.
 
 ### The Gradle Wrapper
 
@@ -52,37 +52,20 @@ Once you have cloned the skeleton, generated keys, and changed into its director
     $ ./gradlew build
     $ ./gradlew run
 
-While this works fine, you can save yourself the './' and the 'w' by installing gradle and adding it to your path.
+While this works fine, you can save yourself the './' and the 'w' by installing Gradle and adding it to your path.
 
-### Installing Gradle
+### Installing and adding Gradle to your path
 
-Using your favorite web browser travel to 'gradle.org/gradle-download' and download version 2.4 from the previous releases section in the lower right. You only need to download the binary only, but if you want the documentation you should download the complete version. Now:
+When you first run the gradle wrapper it automatically downloads Gradle, along with numerous associated files, and places these in a .gradle directory in your home directory. To add the Gradle in this directory add the following to the last line of your .bashrc.
+(Note: .bashrc is found in your home directory)
 
-    $ cd /path/to/gradle-2.4-bin.zip
-    $ unzip gradle-2.4-all.zip -d /path/to/destination_folder
-
-Now to install gradle
-
-    $ cd /path/to/gradle-2.4/bin
-    $ gradle
-
-If gradle successfully installed you will see a message with the gradle version and some other information. Now you can add it to your path.
-
-### Adding Gradle to your path
-
-These next steps assume you are using bash, and if you are will add gradle to your path. You can use your favorite text editor, but this documentation uses vim.
-
-    $ vim /home/your_username/.bashrc
-
-On the last line of the .bashrc add the following line:
-
-    $ export PATH=$PATH:/path/to/gradle-2.4/bin
+    export PATH=$PATH:/home/user/.gradle/wrapper/dists/gradle-2.4-all/WRAPPER_GENERATED_HASH/gradle-2.4/bin
 
 Save the changes and then restart the terminal or type
 
     $ source .bashrc
 
-into the command line. The changes will take effect once you have done this properly. Now you can run gradle from inside the skeleton api or anywhere else in your system.
+into the command line. The changes will take effect once you have done this properly. Now you can run Gradle from inside the skeleton api or anywhere else in your system.
 
 ## Tasks
 
