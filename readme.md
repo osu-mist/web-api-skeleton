@@ -43,29 +43,15 @@ Import certificate into truststore:
 
 ## Gradle
 
-If you are already familiar with Gradle, or have it installed on your system feel free to skip ahead to the next section in the documentation.
+This project uses the build automation tool Gradle. Use the [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) to download and install it automatically:
 
-### The Gradle Wrapper
+    $ ./gradlew
 
-Once you have cloned the skeleton, generated keys, and changed into its directory, you can build and run it by typing the following into the command line
+The Gradle wrapper installs Gradle in the directory `~/.gradle`. To add it to your `$PATH`, add the following line to `~/.bashrc`:
 
-    $ ./gradlew build
-    $ ./gradlew run
+    $ export PATH=$PATH:/home/user/.gradle/wrapper/dists/gradle-2.4-all/WRAPPER_GENERATED_HASH/gradle-2.4/bin
 
-While this works fine, you can save yourself the './' and the 'w' by installing Gradle and adding it to your path.
-
-### Installing and adding Gradle to your path
-
-When you first run the gradle wrapper it automatically downloads Gradle, along with numerous associated files, and places these in a .gradle directory in your home directory. To add the Gradle in this directory add the following to the last line of your .bashrc.
-(Note: .bashrc is found in your home directory)
-
-    export PATH=$PATH:/home/user/.gradle/wrapper/dists/gradle-2.4-all/WRAPPER_GENERATED_HASH/gradle-2.4/bin
-
-Save the changes and then restart the terminal or type
-
-    $ source .bashrc
-
-into the command line. The changes will take effect once you have done this properly. Now you can run Gradle from inside the skeleton api or anywhere else in your system.
+The changes will take effect once you restart the terminal or `source ~/.bashrc`.
 
 ## Tasks
 
