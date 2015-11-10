@@ -2,21 +2,6 @@
 
 Skeleton for Dropwizard Web APIs.
 
-
-## Tasks
-
-List all tasks runnable from root project:
-
-    $ gradle tasks
-
-### IntelliJ IDEA
-
-Generate IntelliJ IDEA project:
-
-    $ gradle idea
-
-Open with `File` -> `Open Project`.
-
 ### Generate Keys
 
 HTTPS is required for Web APIs in development and production. Use `keytool(1)` to generate public and private keys.
@@ -55,6 +40,32 @@ Import certificate into truststore:
         -alias "doej" \
         -file doej.cer \
         -keystore doej.truststore
+
+## Gradle
+
+This project uses the build automation tool Gradle. Use the [Gradle Wrapper](https://docs.gradle.org/current/userguide/gradle_wrapper.html) to download and install it automatically:
+
+    $ ./gradlew
+
+The Gradle wrapper installs Gradle in the directory `~/.gradle`. To add it to your `$PATH`, add the following line to `~/.bashrc`:
+
+    $ export PATH=$PATH:/home/user/.gradle/wrapper/dists/gradle-2.4-all/WRAPPER_GENERATED_HASH/gradle-2.4/bin
+
+The changes will take effect once you restart the terminal or `source ~/.bashrc`.
+
+## Tasks
+
+List all tasks runnable from root project:
+
+    $ gradle tasks
+
+### IntelliJ IDEA
+
+Generate IntelliJ IDEA project:
+
+    $ gradle idea
+
+Open with `File` -> `Open Project`.
 
 ### Configure
 
