@@ -90,7 +90,7 @@ Run the project:
 
 Add the skeleton as a remote:
 
-    $ git remote add skeleton https://github.com/osu-mist/web-api-skeleton.git
+    $ git remote add skeleton git@github.com:osu-mist/web-api-skeleton.git
     $ git fetch skeleton
 
 Create a branch to track the skeleton:
