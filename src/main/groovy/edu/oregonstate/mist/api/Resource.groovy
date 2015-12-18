@@ -63,7 +63,7 @@ abstract class Resource {
                 status: 404,
                 developerMessage: properties.get('notFound.developerMessage'),
                 userMessage: properties.get('notFound.userMessage'),
-                code: (Integer)properties.get('notFound.code'),
+                code: Integer.getInteger((String)properties.get('notFound.code')),
                 details: properties.get('notFound.details')
         ))
     }
