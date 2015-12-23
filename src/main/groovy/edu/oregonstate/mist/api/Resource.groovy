@@ -47,7 +47,7 @@ abstract class Resource {
                 status: 400,
                 developerMessage: message,
                 userMessage: properties.get('badRequest.userMessage'),
-                code: (Integer)properties.get('badRequest.code'),
+                code: Integer.getInteger((String)properties.get('badRequest.code')),
                 details: properties.get('badRequest.details')
         ))
     }
