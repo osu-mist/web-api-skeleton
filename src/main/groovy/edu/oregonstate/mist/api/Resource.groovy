@@ -67,4 +67,20 @@ abstract class Resource {
                 details: properties.get('notFound.details')
         ))
     }
+
+    /**
+     * Returns a builder for an HTTP 500 ("internal server error") response with an error message as body.
+     *
+     * @return internal server error response builder
+     */
+    protected static ResponseBuilder internalServerError(String message) {
+        ResponseBuilder responseBuilder = Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+        responseBuilder.entity(new Error(
+                status: 500,
+                developerMessage: message,
+                userMessage: properties.get('internalServerError.userMessage'),
+                code: Integer.getInteger((String)properties.get('internalServerError.code')),
+                details: properties.get('internalServerError.details')
+        ))
+    }
 }
