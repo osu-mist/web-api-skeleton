@@ -79,7 +79,7 @@ abstract class Resource {
                 status: 500,
                 developerMessage: message,
                 userMessage: properties.get('internalServerError.userMessage'),
-                code: Integer.getInteger((String)properties.get('internalServerError.code')),
+                code: Integer.parseInt(properties.get('internalServerError.code')),
                 details: properties.get('internalServerError.details')
         ))
     }
