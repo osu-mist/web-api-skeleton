@@ -39,6 +39,9 @@ dependencies {
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     compile "io.dropwizard:dropwizard-auth:${dropwizardVersion}"
+    compile "io.katharsis:katharsis-core:2.1.3"
+    compile "org.reflections:reflections:0.9.9"
+    compile 'io.katharsis:katharsis-rs:2.1.3'
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
     // compile ':ojdbc6_g:'
 }

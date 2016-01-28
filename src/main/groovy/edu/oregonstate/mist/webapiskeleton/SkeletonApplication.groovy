@@ -11,18 +11,23 @@ import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
 import io.dropwizard.auth.AuthFactory
 import io.dropwizard.auth.basic.BasicAuthFactory
+import io.katharsis.locator.SampleJsonServiceLocator
+
+import io.katharsis.locator.SampleJsonServiceLocator
+import io.katharsis.rs.KatharsisFeature
+import io.katharsis.rs.KatharsisProperties
 
 /**
  * Main application class.
  */
-class SkeletonApplication extends Application<Configuration> {
+class SkeletonApplication extends Application<SkeletonApplicationConfiguration> {
     /**
      * Initializes application bootstrap.
      *
      * @param bootstrap
      */
     @Override
-    public void initialize(Bootstrap<Configuration> bootstrap) {}
+    public void initialize(Bootstrap<SkeletonApplicationConfiguration> bootstrap) {}
 
     /**
      * Parses command-line arguments and runs the application.
@@ -31,16 +36,22 @@ class SkeletonApplication extends Application<Configuration> {
      * @param environment
      */
     @Override
-    public void run(Configuration configuration, Environment environment) {
+    public void run(SkeletonApplicationConfiguration configuration, Environment environment) {
+        environment.jersey().property(KatharsisProperties.RESOURCE_DEFAULT_DOMAIN, configuration.katharsis.host)
+        environment.jersey().property(KatharsisProperties.RESOURCE_SEARCH_PACKAGE, configuration.katharsis.searchPackage)
+        KatharsisFeature katharsisFeature = new KatharsisFeature(environment.getObjectMapper(), new
+                SampleJsonServiceLocator())
+        environment.jersey().register(katharsisFeature)
+
         Resource.loadProperties('resource.properties')
-        environment.jersey().register(new SampleResource())
+//        environment.jersey().register(new SampleResource())
         environment.jersey().register(new InfoResource())
-        environment.jersey().register(
+        /*environment.jersey().register(
                 AuthFactory.binder(
                         new BasicAuthFactory<AuthenticatedUser>(
                                 new BasicAuthenticator(configuration.getCredentialsList()),
                                 'SkeletonApplication',
-                                AuthenticatedUser.class)))
+                                AuthenticatedUser.class)))*/
     }
 
     /**
