@@ -1,17 +1,10 @@
 package edu.oregonstate.mist.webapiskeleton
 
-import edu.oregonstate.mist.api.Configuration
 import edu.oregonstate.mist.api.Resource
 import edu.oregonstate.mist.api.InfoResource
-import edu.oregonstate.mist.api.AuthenticatedUser
-import edu.oregonstate.mist.api.BasicAuthenticator
-import edu.oregonstate.mist.webapiskeleton.resources.SampleResource
 import io.dropwizard.Application
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
-import io.dropwizard.auth.AuthFactory
-import io.dropwizard.auth.basic.BasicAuthFactory
-import io.katharsis.locator.SampleJsonServiceLocator
 
 import io.katharsis.locator.SampleJsonServiceLocator
 import io.katharsis.rs.KatharsisFeature

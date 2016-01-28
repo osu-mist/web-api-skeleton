@@ -9,16 +9,17 @@ import io.katharsis.repository.annotations.JsonApiFindOne
 import io.katharsis.repository.annotations.JsonApiResourceRepository
 import io.katharsis.repository.annotations.JsonApiSave
 import io.katharsis.resource.exception.ResourceNotFoundException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
 @JsonApiResourceRepository(Sample.class)
 public class SampleRepository {
-    // FIXME: this is a naive copy-paste from katharsis.io/start
-    // TODO: i did not have a chance to go through the "Application" and "Testing" sections
+    private static final Logger LOGGER = LoggerFactory.getLogger(SampleRepository.class)
 
-    private static final Map<Long, Sample> REPOSITORY = new ConcurrentHashMap<>()
+    private static final Map<Long, Sample> REPOSITORY = new ConcurrentHashMap<Long, Sample>()
     private static final AtomicLong ID_GENERATOR = new AtomicLong(1)
 
     @JsonApiSave
@@ -27,7 +28,7 @@ public class SampleRepository {
             entity.setId(ID_GENERATOR.getAndIncrement())
         }
         REPOSITORY.put(entity.getId(), entity)
-        return entity
+        entity
     }
 
     @JsonApiFindOne
@@ -36,21 +37,18 @@ public class SampleRepository {
         if (sample == null) {
             throw new ResourceNotFoundException("Sample not found")
         }
-        return Sample
+        sample
     }
 
     @JsonApiFindAll
     public Iterable<Sample> findAll(QueryParams queryParams) {
-        return REPOSITORY.values()
+        REPOSITORY.values()
     }
 
     @JsonApiFindAllWithIds
     public Iterable<Sample> findAll(Iterable<Long> iterable, QueryParams queryParams) {
-        return REPOSITORY.entrySet()
-                .stream()
-                .filter( { p -> Iterables.contains(iterable, p.getKey()) } )
-//                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue))
-                .collect(Collectors.toList())
+        REPOSITORY.entrySet()
+                .findAll { key, val -> Iterables.contains(iterable, key) }
                 .values()
     }
 
