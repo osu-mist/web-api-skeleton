@@ -57,6 +57,10 @@ jar {
     archiveName = "${baseName}-${appendix}-${version}.${extension}"
 }
 
+tasks.withType(CodeNarc) {
+    maxPriority3Violations = 6
+}
+
 // https://github.com/johnrengelman/shadow
 shadowJar {
     baseName = jar.baseName
