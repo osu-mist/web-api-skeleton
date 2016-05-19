@@ -4,6 +4,7 @@
 ruleset {
     description 'MIST Groovy RuleSet'
 
+    /* class name starts with a uppercase letter */
     ClassName {
         description = 'Verify that class name starts with an uppercase letter followed by zero or ' +
                       'more word characters or dollar signs, warning if skeleton code is unchanged.'
@@ -11,6 +12,17 @@ ruleset {
                    ^(
                      (?!(SkeletonApplication|Sample|SampleResource)$) # fail on skeleton class names
                      ([A-Z]\\w*$?)*                                   # codenarc default
+                   )$'''
+        priority = 3
+    }
+
+    /* variable name starts with a lowercase letter */
+    VariableName {
+        description = 'Verify that class name starts with an lowercase letter followed by zero or ' +
+                'more word characters or dollar signs, warning if skeleton code is unchanged.'
+        regex = '''(?x)
+                   ^(
+                     ([a-z]\\w*$?)*
                    )$'''
         priority = 3
     }
