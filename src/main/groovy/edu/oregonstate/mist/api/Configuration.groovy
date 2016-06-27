@@ -12,4 +12,9 @@ class Configuration extends io.dropwizard.Configuration {
     @NotNull
     @Valid
     List<Credentials> credentialsList
+
+    @JsonProperty('api')
+    @NotNull
+    @Valid
+    ApiConfiguration api
 }
