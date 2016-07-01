@@ -32,7 +32,7 @@ class SkeletonApplication extends Application<Configuration> {
      */
     @Override
     public void run(Configuration configuration, Environment environment) {
-        Resource.loadProperties('resource.properties')
+        Resource.loadProperties()
         environment.jersey().register(new SampleResource())
         environment.jersey().register(new InfoResource())
         environment.jersey().register(
