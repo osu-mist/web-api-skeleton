@@ -43,6 +43,9 @@ authentication:
   - username: username
     password: password
 
+api:
+  endpointUri: https://api.oregonstate.edu/v1/web-api-skeleton/
+
 #
 ## Example Oracle configuration
 #
