@@ -75,10 +75,10 @@ ruleset {
     /* Check that there is at least one space after each closing brace */
     SpaceAfterClosingBrace
 
-    /* Checks the maximum length for each line of source code. Defaults is 120 maximum. */
+    /* Checks the maximum length for each line of source code. Defaults is 120 characters maximum. */
     LineLength {
-        description = 'Checks for number of characters, so lines that include tabs ' +
-                      'may not exceed longer than the 120 characters when viewing the file.'
+        description = 'Checks for number of characters, so lines that include tabs may not ' +
+                      'exceed 120 characters.'
         length = 120
 
         priority = 3
