@@ -78,8 +78,8 @@ ruleset {
     /* Checks the maximum length for each line of source code. Defaults is 120 characters maximum. */
     LineLength {
         description = 'Checks for number of characters, so lines that include tabs may not ' +
-                      'exceed 120 characters.'
-        length = 120
+                      'exceed 100 characters.'
+        length = 100
 
         priority = 3
     }
