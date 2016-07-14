@@ -69,7 +69,8 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 500 ("internal server error") response with an error message as body.
+     * Returns a builder for an HTTP 500 ("internal server error") response with an error message
+     * as body.
      *
      * @return internal server error response builder
      */
