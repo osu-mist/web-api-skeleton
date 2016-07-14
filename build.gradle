@@ -14,7 +14,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 buildscript {
     repositories {
         maven {
-	    url 'https://plugins.gradle.org/m2/'
+            url 'https://plugins.gradle.org/m2/'
         }
     }
     dependencies {
@@ -76,13 +76,16 @@ shadowJar {
 }
 
 // write build properties to file
-Properties properties = new Properties()
-properties.setProperty('name', jar.baseName)
-properties.setProperty('time', jar.appendix)
-properties.setProperty('commit', jar.version)
-properties.setProperty('documentation', 'swagger.yaml')
-FileWriter fileWriter = new FileWriter('build.properties')
-properties.store(fileWriter, 'build properties')
+task writeBuildProperties << {
+    Properties properties = new Properties()
+    properties.setProperty('name', jar.baseName)
+    properties.setProperty('time', jar.appendix)
+    properties.setProperty('commit', jar.version)
+    properties.setProperty('documentation', 'swagger.yaml')
+    FileWriter fileWriter = new FileWriter("${projectDir}/src/main/resources/build.properties")
+    properties.store(fileWriter, 'build properties')
+}
+processResources.dependsOn writeBuildProperties
 
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html
 build.dependsOn shadowJar, groovydoc
