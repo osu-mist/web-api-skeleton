@@ -9,36 +9,31 @@ HTTPS is required for Web APIs in development and production. Use `keytool(1)` t
 Generate key pair and keystore:
 
     $ keytool \
-        -genkey \
+        -genkeypair \
         -dname "CN=Jane Doe, OU=Enterprise Computing Services, O=Oregon State University, L=Corvallis, S=Oregon, C=US" \
-        -alias "doej" \
-        -keyalg "RSA" \
+        -ext "san=dns:localhost,ip:127.0.0.1" \
+        -alias doej \
+        -keyalg RSA \
         -keysize 2048 \
+        -sigalg SHA256withRSA \
         -validity 365 \
-        -keystore doej.keystore
-
-Create self-signed certificate:
-
-    $ keytool \
-        -selfcert \
-        -alias "doej" \
-        -sigalg "SHA256withRSA" \
         -keystore doej.keystore
 
 Export certificate to file:
 
     $ keytool \
-        -export \
+        -exportcert \
+        -rfc \
         -alias "doej" \
         -keystore doej.keystore \
-        -file doej.cer
+        -file doej.pem
 
 Import certificate into truststore:
 
     $ keytool \
-        -import \
+        -importcert \
         -alias "doej" \
-        -file doej.cer \
+        -file doej.pem \
         -keystore doej.truststore
 
 ## Gradle
@@ -130,11 +125,11 @@ The following examples demonstrate the use of `curl` to make authenticated HTTPS
 This resource returns build and runtime information:
 
     $ curl \
-    > --insecure \
+    > --cacert doej.pem \
     > --user "username:password" \
     > https://localhost:8080/api/v0/
     {"name":"web-api-skeleton","time":1445964601991,"commit":"f08ce22","documentation":"swagger.yaml"}
 
-NOTE: the --insecure option should only be used for local testing.
+NOTE: you should only specify a certificate with --cacert for local testing.
 Production servers should use a real certificate
 issued by a valid certificate authority.
