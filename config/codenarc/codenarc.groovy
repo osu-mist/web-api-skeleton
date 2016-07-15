@@ -10,7 +10,7 @@ ruleset {
                       'more word characters or dollar signs, warning if skeleton code is unchanged.'
         regex = '''(?x)
                    ^(
-                     (?!(SkeletonApplication|Sample|SampleResource)$) # fail on skeleton class names
+                     (?!(SkeletonApplication)$) # fail on skeleton class names
                      ([A-Z]\\w*$?)*                                   # codenarc default
                    )$'''
         priority = 3

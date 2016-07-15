@@ -5,7 +5,6 @@ import edu.oregonstate.mist.api.Resource
 import edu.oregonstate.mist.api.InfoResource
 import edu.oregonstate.mist.api.AuthenticatedUser
 import edu.oregonstate.mist.api.BasicAuthenticator
-import edu.oregonstate.mist.webapiskeleton.resources.SampleResource
 import io.dropwizard.Application
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
@@ -33,7 +32,6 @@ class SkeletonApplication extends Application<Configuration> {
     @Override
     public void run(Configuration configuration, Environment environment) {
         Resource.loadProperties()
-        environment.jersey().register(new SampleResource())
         environment.jersey().register(new InfoResource())
         environment.jersey().register(
                 AuthFactory.binder(
