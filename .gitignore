@@ -17,3 +17,6 @@ configuration.yaml
 
 # Build Properties
 build.properties
+
+# bin
+bin/

@@ -12,7 +12,6 @@ import javax.ws.rs.core.UriInfo
 abstract class Resource {
     protected static Properties properties = new Properties()
 
-
     /**
      * Default page number used in pagination
      */
@@ -31,8 +30,12 @@ abstract class Resource {
      */
     private URI endpointUri
 
-    public static loadProperties(String fileName) {
-        properties.load(new FileReader(fileName))
+    public static loadProperties() {
+        def stream = this.getResourceAsStream('resource.properties')
+        if (stream == null) {
+            throw new Exception("couldn't open resource.properties")
+        }
+        properties.load(stream)
     }
 
     /**

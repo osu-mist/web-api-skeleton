@@ -14,6 +14,21 @@ import javax.ws.rs.core.Response
 class InfoResource extends Resource {
     private Info info = new Info()
 
+    public InfoResource() {
+        def stream = this.class.getResourceAsStream('/build.properties')
+        if (stream == null) {
+            throw new Exception("couldn't load build.properties")
+        }
+
+        def properties = new Properties()
+        properties.load(stream)
+
+        info.name = properties.get('name')
+        info.time = Long.parseLong(properties.getProperty('time'))
+        info.commit = properties.get('commit')
+        info.documentation = properties.get('documentation')
+    }
+
     /**
      * Responds to GET requests by returning object containing information.
      *
