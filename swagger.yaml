@@ -27,37 +27,6 @@ paths:
           description: Object containing information
           schema:
             $ref: '#/definitions/Info'
-  /sample:
-    get:
-      summary: Get message
-      description: This is a sample resource that returns a short message.
-      responses:
-        200:
-          description: A short message
-          schema:
-            type: string
-        404:
-          description: Not found
-          schema:
-            $ref: '#/definitions/Error'
-    post:
-      summary: Post message
-      description: This is a sample resource that returns the message it receives.
-      parameters:
-        - name: message
-          in: body
-          schema:
-            type: string
-          required: true
-      responses:
-        200:
-          description: The message received
-          schema:
-            type: string
-        404:
-          description: Not found
-          schema:
-            $ref: '#/definitions/Error'
 definitions:
   Info:
     properties:
