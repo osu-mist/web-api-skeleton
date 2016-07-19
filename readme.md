@@ -9,36 +9,31 @@ HTTPS is required for Web APIs in development and production. Use `keytool(1)` t
 Generate key pair and keystore:
 
     $ keytool \
-        -genkey \
+        -genkeypair \
         -dname "CN=Jane Doe, OU=Enterprise Computing Services, O=Oregon State University, L=Corvallis, S=Oregon, C=US" \
-        -alias "doej" \
-        -keyalg "RSA" \
+        -ext "san=dns:localhost,ip:127.0.0.1" \
+        -alias doej \
+        -keyalg RSA \
         -keysize 2048 \
+        -sigalg SHA256withRSA \
         -validity 365 \
-        -keystore doej.keystore
-
-Create self-signed certificate:
-
-    $ keytool \
-        -selfcert \
-        -alias "doej" \
-        -sigalg "SHA256withRSA" \
         -keystore doej.keystore
 
 Export certificate to file:
 
     $ keytool \
-        -export \
+        -exportcert \
+        -rfc \
         -alias "doej" \
         -keystore doej.keystore \
-        -file doej.cer
+        -file doej.pem
 
 Import certificate into truststore:
 
     $ keytool \
-        -import \
+        -importcert \
         -alias "doej" \
-        -file doej.cer \
+        -file doej.pem \
         -keystore doej.truststore
 
 ## Gradle
@@ -123,106 +118,18 @@ Merge the updates into your codebase as before. Note that changes to CodeNarc co
 
 The Web API definition is contained in the [Swagger specification](swagger.yaml).
 
-The following examples demonstrate the use of `openssl s_client` and `curl` to make authenticated HTTPS requests.
+The following examples demonstrate the use of `curl` to make authenticated HTTPS requests.
 
 ### GET /
 
 This resource returns build and runtime information:
 
-    $ echo -n "username:password" | base64
-    dXNlcm5hbWU6cGFzc3dvcmQ=
-    $ openssl s_client -connect localhost:8080 -CAfile doej.cer 
-    CONNECTED(00000004)
-    depth=0 C = US, ST = Oregon, L = Corvallis, O = Oregon State University, OU = Enterprise Computing Services, CN = Jane Doe
-    verify error:num=18:self signed certificate
-    verify return:1
-    depth=0 C = US, ST = Oregon, L = Corvallis, O = Oregon State University, OU = Enterprise Computing Services, CN = Jane Doe
-    verify return:1
-    ---
-    Certificate chain
-     0 s:/C=US/ST=Oregon/L=Corvallis/O=Oregon State University/OU=Enterprise Computing Services/CN=Jane Doe
-       i:/C=US/ST=Oregon/L=Corvallis/O=Oregon State University/OU=Enterprise Computing Services/CN=Jane Doe
-    ---
-    Server certificate
-    -----BEGIN CERTIFICATE-----
-    MIIDvzCCAqegAwIBAgIEHOuDIzANBgkqhkiG9w0BAQsFADCBjzELMAkGA1UEBhMC
-    VVMxDzANBgNVBAgTBk9yZWdvbjESMBAGA1UEBxMJQ29ydmFsbGlzMSAwHgYDVQQK
-    ExdPcmVnb24gU3RhdGUgVW5pdmVyc2l0eTEmMCQGA1UECxMdRW50ZXJwcmlzZSBD
-    b21wdXRpbmcgU2VydmljZXMxETAPBgNVBAMTCEphbmUgRG9lMB4XDTE1MTAyNzE5
-    MDMxOFoXDTE2MDEyNTE5MDMxOFowgY8xCzAJBgNVBAYTAlVTMQ8wDQYDVQQIEwZP
-    cmVnb24xEjAQBgNVBAcTCUNvcnZhbGxpczEgMB4GA1UEChMXT3JlZ29uIFN0YXRl
-    IFVuaXZlcnNpdHkxJjAkBgNVBAsTHUVudGVycHJpc2UgQ29tcHV0aW5nIFNlcnZp
-    Y2VzMREwDwYDVQQDEwhKYW5lIERvZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
-    AQoCggEBAKJUuSjl/TjFYtkh0/5cb+TBMvhndKl+lIe75KB81PoXQpkePz2456Rv
-    4KXyM94Dyg+i+eccBC2RNXVTrq0bXqQ/utWRBpEn6IRLFobA29lH9ZoDhhHe52kK
-    tP1mTFCCi/3GCGTZXuj65DCyLI5gyT2Cyjjf8rpXdSDXhHATRdpdw474JcngMbIo
-    8JtgsHp6b5X87FfZGrKAOwQLp+ifzBU5sVK+mhi1pwlyzBkPx9Ma/ctrVR4NEJGX
-    z/NJegEE4o3FVVHJnOiFZWfYdYUqQi8WtNaG6oRdwsBS3nfdD/EIum0j5EMOFxji
-    jaCNYIzkZFGhlSqPrcHQ8pPcnVoi53MCAwEAAaMhMB8wHQYDVR0OBBYEFKVL9W4P
-    /fUH1JfWkMu1Ty+PZF5gMA0GCSqGSIb3DQEBCwUAA4IBAQBetD1CpwAThmSxTkX+
-    sowZ/vvhKGiYI+3PIKCasXYw37Kdg15xfN1LJQVpgKhlvT5U6i03dSg0ZXUhpwLb
-    LWsI6Heq5y549+4HJyhqGTyec5HCxFgLAvGh4Tc5bD/zrEDi366YPrxj7nzapfge
-    S3xhvF2V0VuS0LVZ0cwENKzVuz1FSNyZG6VEQ1slGuUYJ+laRZ5CPBo5d5KfdIKG
-    8gVTetwacPP8fNNt2IOg4DledSzFn2ahLxXtyzXvu2gjFukfVC0bR82KuYZnJQIu
-    ezfIeCrkHo3HUX7KfDbFGnjtOXN1B175cAY3zZb3IKUQMQoy+MPJBoC8YU25LL6n
-    K4vv
-    -----END CERTIFICATE-----
-    subject=/C=US/ST=Oregon/L=Corvallis/O=Oregon State University/OU=Enterprise Computing Services/CN=Jane Doe
-    issuer=/C=US/ST=Oregon/L=Corvallis/O=Oregon State University/OU=Enterprise Computing Services/CN=Jane Doe
-    ---
-    No client certificate CA names sent
-    ---
-    SSL handshake has read 1567 bytes and written 544 bytes
-    ---
-    New, TLSv1/SSLv3, Cipher is ECDHE-RSA-AES128-SHA256
-    Server public key is 2048 bit
-    Secure Renegotiation IS supported
-    Compression: NONE
-    Expansion: NONE
-    SSL-Session:
-        Protocol  : TLSv1.2
-        Cipher    : ECDHE-RSA-AES128-SHA256
-        Session-ID: 562FCC0D8492CDA3515903B2B0D25D20D7EA9BBF7F8C21F84FBFA7EC294B98A3
-        Session-ID-ctx: 
-        Master-Key: 264ABBA6CCE9F6516E0709201011219E8BBD08F90B08CF732E26951A91C0BA148B844FCAFA112304269C4781D2851462
-        Key-Arg   : None
-        PSK identity: None
-        PSK identity hint: None
-        SRP username: None
-        Start Time: 1445973005
-        Timeout   : 300 (sec)
-        Verify return code: 18 (self signed certificate)
-    ---
-    GET /api/v0 HTTP/1.0
-    Authorization: Basic dXNlcm5hbWU6cGFzc3dvcmQ=
-    
-    HTTP/1.1 200 OK
-    Date: Tue, 27 Oct 2015 19:10:23 GMT
-    Content-Type: application/json
-    Content-Length: 111
-    
-    {"name":"web-api-skeleton","time":1445964601991,"commit":"f08ce22","documentation":"swagger.yaml"}closed
-
-### GET /sample
-
-This sample resource returns a short message:
-
     $ curl \
-    > --insecure \
-    > --key doej.cer \
+    > --cacert doej.pem \
     > --user "username:password" \
-    > https://localhost:8080/api/v0/sample
-    hello world
+    > https://localhost:8080/api/v0/
+    {"name":"web-api-skeleton","time":1445964601991,"commit":"f08ce22","documentation":"swagger.yaml"}
 
-### POST /sample
-
-This sample resource returns the request message:
-
-    $ curl \
-    > --insecure \
-    > --key doej.cer \
-    > --user "username:password" \
-    > --header "Content-Type: text/plain" \
-    > --data "goodbye world" \
-    > https://localhost:8080/api/v0/sample
-    goodbye world
+NOTE: you should only specify a certificate with --cacert for local testing.
+Production servers should use a real certificate
+issued by a valid certificate authority.
