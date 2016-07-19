@@ -88,30 +88,27 @@ Add the skeleton as a remote:
     $ git remote add skeleton git@github.com:osu-mist/web-api-skeleton.git
     $ git fetch skeleton
 
-Create a branch to track the skeleton:
-
-    $ git checkout -b skeleton-master skeleton/master
-
 Merge the skeleton into your codebase:
 
     $ git checkout feature/abc-123-branch
-    $ git merge skeleton-master
+    $ git merge skeleton/master
     ...
     $ git commit -v
 
 
 ## Incorporate Updates from the Skeleton
 
-Ensure that branch `skeleton-master` is tracking remote `skeleton`:
-
-    $ git branch -u skeleton/master skeleton-master
-
-Update local branch:
+Fetch updates from the skeleton:
 
     $ git fetch skeleton
-    $ git pull
 
-Merge the updates into your codebase as before. Note that changes to CodeNarc configuration may introduce build failures.
+Merge the updates into your codebase as before.
+Note that changes to CodeNarc configuration may introduce build failures.
+
+    $ git checkout feature/abc-124-branch
+    $ git merge skeleton/master
+    ...
+    $ git commit -v
 
 
 ## Resources
