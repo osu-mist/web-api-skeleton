@@ -121,20 +121,22 @@ abstract class Resource {
      * @return
      */
     protected String getPaginationUrl(def params) {
-        def uriAndPath = endpointUri.toString() + uriInfo.getPath()
+        URIBuilder uriBuilder = new URIBuilder(endpointUri).setPath(uriInfo.requestUri.path)
+
+        // use a copy of params since other parameters could be present
         def nonNullParams = params.clone()
-        // convert pageVariable to page[variable]
-        nonNullParams["page[number]"] = nonNullParams['pageNumber']
-        nonNullParams["page[size]"] = nonNullParams['pageSize']
         nonNullParams.remove('pageSize')
         nonNullParams.remove('pageNumber')
 
-        // remove empty GET parameters and url encode key + val
-        nonNullParams = nonNullParams.findAll { it.value } .collect { k, v ->
-            URLEncoder.encode(k, "UTF-8") + "=" + URLEncoder.encode(v.toString(), "UTF-8")
+        // convert pageVariable to page[variable]
+        nonNullParams["page[number]"] = params['pageNumber']
+        nonNullParams["page[size]"] = params['pageSize']
+
+        nonNullParams.findAll { it.value } .collect { k, v ->
+            uriBuilder.setParameter(k, v.toString())
         }
 
-        uriAndPath + "?" + nonNullParams.join('&')
+        uriBuilder.build().toString()
     }
 
     /**
