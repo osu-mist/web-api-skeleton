@@ -129,8 +129,10 @@ abstract class Resource {
         nonNullParams.remove('pageSize')
         nonNullParams.remove('pageNumber')
 
-        // remove empty GET parameters
-        nonNullParams = nonNullParams.findAll { it.value } .collect { k, v -> "$k=$v" }
+        // remove empty GET parameters and url encode key + val
+        nonNullParams = nonNullParams.findAll { it.value } .collect { k, v ->
+            URLEncoder.encode(k, "UTF-8") + "=" + URLEncoder.encode(v.toString(), "UTF-8")
+        }
 
         uriAndPath + "?" + nonNullParams.join('&')
     }
