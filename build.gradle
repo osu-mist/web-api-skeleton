@@ -39,6 +39,7 @@ dependencies {
     compile "org.codehaus.groovy:groovy:${groovyVersion}"
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     compile "io.dropwizard:dropwizard-auth:${dropwizardVersion}"
+    compile "io.dropwizard:dropwizard-client:${dropwizardVersion}"
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
     // compile ':ojdbc6_g:'
 }
