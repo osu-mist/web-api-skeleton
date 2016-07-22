@@ -80,6 +80,25 @@ Run the project:
 
     $ gradle run
 
+## Base a New Project off the Skeleton
+
+Clone the skeleton:
+
+    $ git clone --origin skeleton git@github.com:osu-mist/web-api-skeleton.git my-api
+    $ cd my-api
+
+Rename the webapiskeleton package and SkeletonApplication class:
+
+    $ git mv src/main/groovy/edu/oregonstate/mist/webapiskeleton src/main/groovy/edu/oregonstate/mist/myapi
+    $ vim src/main/groovy/edu/oregonstate/mist/myapi/SkeletonApplication.class
+
+Update gradle.properties with your package name and main class.
+
+Replace swagger.yaml with your own API specification.
+
+Update configuration-example.yaml as appropriate for your application.
+
+Update the resource examples at the end of this readme.
 
 ## Base an Existing Project off the Skeleton
 
