@@ -80,6 +80,25 @@ Run the project:
 
     $ gradle run
 
+## Base a New Project off the Skeleton
+
+Clone the skeleton:
+
+    $ git clone --origin skeleton git@github.com:osu-mist/web-api-skeleton.git my-api
+    $ cd my-api
+
+Rename the webapiskeleton package and SkeletonApplication class:
+
+    $ git mv src/main/groovy/edu/oregonstate/mist/webapiskeleton src/main/groovy/edu/oregonstate/mist/myapi
+    $ vim src/main/groovy/edu/oregonstate/mist/myapi/SkeletonApplication.class
+
+Update gradle.properties with your package name and main class.
+
+Replace swagger.yaml with your own API specification.
+
+Update configuration-example.yaml as appropriate for your application.
+
+Update the resource examples at the end of this readme.
 
 ## Base an Existing Project off the Skeleton
 
@@ -88,30 +107,27 @@ Add the skeleton as a remote:
     $ git remote add skeleton git@github.com:osu-mist/web-api-skeleton.git
     $ git fetch skeleton
 
-Create a branch to track the skeleton:
-
-    $ git checkout -b skeleton-master skeleton/master
-
 Merge the skeleton into your codebase:
 
     $ git checkout feature/abc-123-branch
-    $ git merge skeleton-master
+    $ git merge skeleton/master
     ...
     $ git commit -v
 
 
 ## Incorporate Updates from the Skeleton
 
-Ensure that branch `skeleton-master` is tracking remote `skeleton`:
-
-    $ git branch -u skeleton/master skeleton-master
-
-Update local branch:
+Fetch updates from the skeleton:
 
     $ git fetch skeleton
-    $ git pull
 
-Merge the updates into your codebase as before. Note that changes to CodeNarc configuration may introduce build failures.
+Merge the updates into your codebase as before.
+Note that changes to CodeNarc configuration may introduce build failures.
+
+    $ git checkout feature/abc-124-branch
+    $ git merge skeleton/master
+    ...
+    $ git commit -v
 
 
 ## Resources
