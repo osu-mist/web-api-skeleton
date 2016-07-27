@@ -1,6 +1,9 @@
 # Gradle
 .gradle/
 
+# Extra dependencies (database drivers)
+bin/
+
 # Dropwizard
 build/
 logs/
@@ -11,21 +14,13 @@ configuration.yaml
 *.ipr
 *.iws
 .idea/
+out/
 
 # Mac OS X
 .DS_Store
 
 # Build Properties
 build.properties
-
-# Driver Dependencies
-bin/
-
-# Library Dependencies
-lib/
-
-# Output Related files
-out/
 
 # Keytool Files
 *.pem
