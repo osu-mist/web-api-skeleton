@@ -18,5 +18,17 @@ configuration.yaml
 # Build Properties
 build.properties
 
-# bin
+# Driver Dependencies
 bin/
+
+# Library Dependencies
+lib/
+
+# Output Related files
+out/
+
+# Keytool Files
+*.pem
+*.cer
+*.keystore
+*.truststore
