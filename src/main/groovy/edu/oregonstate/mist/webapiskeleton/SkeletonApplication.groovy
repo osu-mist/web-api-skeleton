@@ -1,5 +1,6 @@
 package edu.oregonstate.mist.webapiskeleton
 
+import edu.oregonstate.mist.api.BuildInfoManager
 import edu.oregonstate.mist.api.Configuration
 import edu.oregonstate.mist.api.Resource
 import edu.oregonstate.mist.api.InfoResource
@@ -32,7 +33,11 @@ class SkeletonApplication extends Application<Configuration> {
     @Override
     public void run(Configuration configuration, Environment environment) {
         Resource.loadProperties()
-        environment.jersey().register(new InfoResource())
+
+        BuildInfoManager buildInfoManager = new BuildInfoManager()
+        environment.lifecycle().manage(buildInfoManager)
+
+        environment.jersey().register(new InfoResource(buildInfoManager.getInfo()))
         environment.jersey().register(
                 AuthFactory.binder(
                         new BasicAuthFactory<AuthenticatedUser>(
