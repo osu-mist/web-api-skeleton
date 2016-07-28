@@ -35,6 +35,10 @@ ruleset {
     /* Checks that else blocks use braces, even for a single statement. */
     ElseBlockBraces
 
+    BracesForIfElse {
+        validateElse = true
+    }
+
     /* Checks that for statements use braces, even for a single statement. */
     ForStatementBraces
 
