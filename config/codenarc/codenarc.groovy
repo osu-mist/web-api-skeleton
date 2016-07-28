@@ -50,8 +50,11 @@ ruleset {
     /* Check that there is at least one space after each closing brace */
     SpaceAfterClosingBrace
 
-    /*Check that the opening brace for the method starts on the same line */
+    /* Check that the opening brace for the method starts on the same line */
     BracesForMethod
+
+    /* Check that there is at least one space (blank) or whitespace around each binary operator */
+    SpaceAroundOperator
 
     /* Checks the maximum length for each line of source code. Defaults is 120 characters maximum. */
     LineLength {
