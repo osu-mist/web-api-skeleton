@@ -61,6 +61,15 @@ ruleset {
     /* Check that there is at least one space (blank) or whitespace around each binary operator */
     SpaceAroundOperator
 
+    /* Check that the opening brace for classes starts on the same line */
+    BracesForClass
+
+    /* Check that the opening brace for loops starts on the same line */
+    BracesForForLoop
+
+    /* Check that the opening brace for try statements starts on the same line */
+    BracesForTryCatchFinally
+
     /* Checks the maximum length for each line of source code. Defaults is 120 characters maximum. */
     LineLength {
         description = 'Checks for number of characters, so lines that include tabs may not ' +
