@@ -35,6 +35,7 @@ ruleset {
     /* Checks that else blocks use braces, even for a single statement. */
     ElseBlockBraces
 
+    /* Checks the location of the opening brace ({) for if statements, including elseOnSameLineAsClosingBrace and elseOnSameLineAsOpeningBrace */
     BracesForIfElse {
         validateElse = true
     }
