@@ -5,7 +5,8 @@ package edu.oregonstate.mist.api
  */
 class Info {
     String name
-    Long time
+    String time
+    Long unixTime
     String commit
     String documentation
 }

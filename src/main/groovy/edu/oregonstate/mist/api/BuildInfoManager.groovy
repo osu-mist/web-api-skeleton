@@ -2,14 +2,12 @@ package edu.oregonstate.mist.api
 
 import io.dropwizard.lifecycle.Managed
 
-/**
- * Created by georgecrary on 7/26/16.
- */
 class BuildInfoManager implements Managed {
+    private Info info = new Info()
+
     Info getInfo() {
         info
     }
-    private Info info = new Info()
 
     @Override
     public void start() throws Exception {
@@ -22,12 +20,13 @@ class BuildInfoManager implements Managed {
         properties.load(stream)
 
         info.name = properties.get('name')
-        info.time = Long.parseLong(properties.getProperty('time'))
+        info.time = properties.get('time')
+        info.unixTime = Long.parseLong(properties.getProperty('unixTime'))
         info.commit = properties.get('commit')
         info.documentation = properties.get('documentation')
     }
+
     @Override
     public void stop() throws Exception {
-
     }
 }
