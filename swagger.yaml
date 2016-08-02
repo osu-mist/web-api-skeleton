@@ -32,21 +32,33 @@ definitions:
     properties:
       name:
         type: string
+        description: Name of the API.
       time:
+        type: string
+        description: Build time in ISO 8601 format.
+      unixTime:
         type: integer
+        description: Build time as milliseconds since the unix epoch.
       commit:
         type: string
+        description: Git commit hash of the revision which was built.
       documentation:
         type: string
+        description: Filename of the swagger specification for the API.
   Error:
     properties:
       status:
         type: integer
+        description: HTTP status code.
       developerMessage:
         type: string
+        description: An error string aimed at developers.
       userMesage:
         type: string
+        description: An error string aimed at end users.
       code:
         type: integer
+        description: Error code.
       details:
         type: string
+        description: A link to further information about the error.
