@@ -10,6 +10,9 @@ apply plugin: 'idea'
 // https://plugins.gradle.org/plugin/com.github.johnrengelman.shadow
 apply plugin: 'com.github.johnrengelman.shadow'
 
+// https://docs.gradle.org/current/dsl/org.gradle.api.plugins.ExtraPropertiesExtension.html
+project.ext.buildTime = new Date()
+
 // https://docs.gradle.org/current/userguide/organizing_build_logic.html#sec:external_dependencies
 buildscript {
     repositories {
@@ -52,7 +55,7 @@ codenarc {
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.bundling.Jar.html
 jar {
     baseName = project.archivesBaseName
-    appendix = System.currentTimeMillis()
+    appendix = project.ext.buildTime.getTime()
     version = 'git log -n1 --format=format:%h'.execute().getText()
     extension = 'jar'
     archiveName = "${baseName}-${appendix}-${version}.${extension}"
@@ -76,7 +79,8 @@ shadowJar {
 task writeBuildProperties << {
     Properties properties = new Properties()
     properties.setProperty('name', jar.baseName)
-    properties.setProperty('time', jar.appendix)
+    properties.setProperty('time', project.ext.buildTime.format('yyyy-MM-dd HH:mm:ssXX'))
+    properties.setProperty('unixTime', jar.appendix)
     properties.setProperty('commit', jar.version)
     properties.setProperty('documentation', 'swagger.yaml')
     FileWriter fileWriter = new FileWriter("${projectDir}/src/main/resources/build.properties")
