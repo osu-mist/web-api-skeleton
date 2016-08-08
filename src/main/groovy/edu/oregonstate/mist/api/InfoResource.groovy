@@ -30,8 +30,7 @@ class InfoResource extends Resource {
             throw new IllegalFormatPrecisionException(3)
         } catch(FileNotFoundException e) {
         }
-
-
+        
         ok(info).build()
     }
 }
