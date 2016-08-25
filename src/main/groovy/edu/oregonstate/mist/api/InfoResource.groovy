@@ -26,11 +26,6 @@ class InfoResource extends Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getInfo(@Auth AuthenticatedUser authenticatedUser) {
-        try {
-            throw new IllegalFormatPrecisionException(3)
-        } catch(FileNotFoundException e) {
-        }
-        
         ok(info).build()
     }
 }
