@@ -27,6 +27,21 @@ class SkeletonApplication extends Application<Configuration> {
     public void initialize(Bootstrap<Configuration> bootstrap) {}
 
     /**
+     * Registers lifecycle managers and Jersey exception mappers
+     *
+     * @param environment
+     * @param buildInfoManager
+     */
+    protected void registerAppManagerLogic(Environment environment,
+                                           BuildInfoManager buildInfoManager) {
+
+        environment.lifecycle().manage(buildInfoManager)
+
+        environment.jersey().register(new IOExceptionMapper())
+        environment.jersey().register(new GenericExceptionMapper())
+    }
+
+    /**
      * Parses command-line arguments and runs the application.
      *
      * @param configuration
@@ -34,13 +49,10 @@ class SkeletonApplication extends Application<Configuration> {
      */
     @Override
     public void run(Configuration configuration, Environment environment) {
-        Resource.loadProperties()
-
+        Resource.loadProperties(environment)
         BuildInfoManager buildInfoManager = new BuildInfoManager()
-        environment.lifecycle().manage(buildInfoManager)
 
-        environment.jersey().register(new IOExceptionMapper())
-        environment.jersey().register(new GenericExceptionMapper())
+        registerAppManagerLogic(environment, buildInfoManager)
 
         environment.jersey().register(new InfoResource(buildInfoManager.getInfo()))
         environment.jersey().register(
