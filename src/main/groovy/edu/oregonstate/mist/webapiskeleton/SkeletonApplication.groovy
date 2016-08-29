@@ -49,7 +49,7 @@ class SkeletonApplication extends Application<Configuration> {
      */
     @Override
     public void run(Configuration configuration, Environment environment) {
-        Resource.loadProperties(environment)
+        Resource.loadProperties()
         BuildInfoManager buildInfoManager = new BuildInfoManager()
 
         registerAppManagerLogic(environment, buildInfoManager)
