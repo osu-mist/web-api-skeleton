@@ -15,7 +15,8 @@ class GenericExceptionMapper implements ExceptionMapper<Exception> {
 
     @Override
     public Response toResponse(Exception e) {
-        logger.error("Generic exception occured and caught by GEMapper. Please map $e" ,e)
+        logger.error("Generic exception occured and caught by GenericExceptionMapper." +
+                "Please map the exception. $e" ,e)
 
         Response.ResponseBuilder builder = Response.status(Response.Status.INTERNAL_SERVER_ERROR)
         builder.entity(new Error(
