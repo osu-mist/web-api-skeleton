@@ -2,9 +2,6 @@ package edu.oregonstate.mist.api
 
 import io.dropwizard.lifecycle.Managed
 
-/**
- * Created by georgecrary on 7/26/16.
- */
 class BuildInfoManager implements Managed {
     Info getInfo() {
         info

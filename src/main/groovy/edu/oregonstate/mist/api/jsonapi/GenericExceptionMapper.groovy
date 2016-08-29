@@ -9,9 +9,6 @@ import javax.ws.rs.core.Response
 import javax.ws.rs.ext.ExceptionMapper
 import javax.ws.rs.ext.Provider
 
-/**
- * Created by georgecrary on 8/5/16.
- */
 @Provider
 class GenericExceptionMapper implements ExceptionMapper<Exception> {
     Logger logger = LoggerFactory.getLogger(GenericExceptionMapper.class)
