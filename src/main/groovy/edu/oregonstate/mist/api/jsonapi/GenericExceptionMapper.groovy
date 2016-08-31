@@ -23,7 +23,7 @@ class GenericExceptionMapper implements ExceptionMapper<Exception> {
                 status: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
                 developerMessage: "Generic exception caught and mapped.",
                 userMessage: "Generic Exception. Please contact a dev.",
-                code: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+                code: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode() + 1000,
                 details: "Unmapped specific exception"
         )).build()
     }
