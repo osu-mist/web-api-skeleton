@@ -24,7 +24,7 @@ class IOExceptionMapper implements ExceptionMapper<IOException> {
                 status: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
                 developerMessage: e.message,
                 userMessage: "Internal Server Error occured. IOException. Please contact a dev.",
-                code: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode(),
+                code: Response.Status.INTERNAL_SERVER_ERROR.getStatusCode() + 1000,
                 details: "IOException mapped and caught"
         )).build()
     }
