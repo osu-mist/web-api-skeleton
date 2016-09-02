@@ -9,11 +9,17 @@ class BuildInfoManager implements Managed {
         info
     }
 
+    /**
+     * Loads builds.properties.
+     * DW App will halt during startup if FileNotFoundException is thrown.
+     *
+     * @throws FileNotFoundException
+     */
     @Override
-    public void start() throws Exception {
+    public void start() throws FileNotFoundException {
         def stream = InfoResource.class.getResourceAsStream('/build.properties')
         if (stream == null) {
-            throw new Exception("couldn't load build.properties")
+            throw new FileNotFoundException("couldn't load build.properties")
         }
 
         def properties = new Properties()
