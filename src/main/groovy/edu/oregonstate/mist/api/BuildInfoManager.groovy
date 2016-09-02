@@ -15,8 +15,8 @@ class BuildInfoManager implements Managed {
      * @throws FileNotFoundException
      */
     @Override
-        def stream = InfoResource.class.getResourceAsStream('/build.properties')
     public void start() throws FileNotFoundException {
+        def stream = InfoResource.class.getResourceAsStream('/build.properties')
         if (stream == null) {
             throw new FileNotFoundException("couldn't load build.properties")
         }
