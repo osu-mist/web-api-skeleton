@@ -80,6 +80,24 @@ Run the project:
 
     $ gradle run
 
+## Contrib Files
+
+Any code that contains intellectual property from a vendor should be stored in Github Enterprise instead of public Github. Make the name of the contrib repo in Github Enterprise follow this format using archivesBaseName in gradle.properties.
+
+    archivesBaseName-contrib
+
+Set the value of getContribFiles to yes in gradle.properties.
+
+    getContribFiles=yes
+
+Files in a Github Enterprise repo will be copied to this directory upon building the application.
+
+    gradle build
+
+Contrib files are copied to:
+
+    /src/main/groovy/edu/oregonstate/mist/contrib/
+    
 ## Base a New Project off the Skeleton
 
 Clone the skeleton:
