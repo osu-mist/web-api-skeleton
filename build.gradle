@@ -77,7 +77,7 @@ shadowJar {
 
 // downloads files stored in contrib repository if getContribFiles is yes
 task cloneContribFiles(type: Exec) {
-    commandLine './cloneContribFiles.sh', "${contribRepo}${archivesBaseName}-contrib.git", "${getContribFiles}"
+    commandLine './cloneContribFiles.sh', "${contribRepo}${archivesBaseName}-contrib.git", "${getContribFiles}", "${contribCommit}"
 }
 compileGroovy.dependsOn cloneContribFiles
 
