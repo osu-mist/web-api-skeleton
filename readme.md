@@ -90,6 +90,10 @@ Set the value of getContribFiles to yes in gradle.properties.
 
     getContribFiles=yes
 
+Also set the value of contribCommit to the SHA1 of the desired commit to be used from the contrib repository.
+
+    contribCommit={SHA1}
+    
 Files in a Github Enterprise repo will be copied to this directory upon building the application.
 
     gradle build
