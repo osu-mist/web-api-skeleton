@@ -14,8 +14,6 @@ import io.dropwizard.auth.AuthValueFactoryProvider
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
-//import io.dropwizard.auth.AuthFactory
-//import io.dropwizard.auth.basic.BasicAuthFactory
 
 /**
  * Main application class.
