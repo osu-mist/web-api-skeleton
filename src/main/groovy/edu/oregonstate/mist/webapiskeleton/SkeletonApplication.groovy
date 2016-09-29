@@ -9,10 +9,13 @@ import edu.oregonstate.mist.api.BasicAuthenticator
 import edu.oregonstate.mist.api.jsonapi.GenericExceptionMapper
 import edu.oregonstate.mist.api.jsonapi.IOExceptionMapper
 import io.dropwizard.Application
+import io.dropwizard.auth.AuthDynamicFeature
+import io.dropwizard.auth.AuthValueFactoryProvider
+import io.dropwizard.auth.basic.BasicCredentialAuthFilter
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
-import io.dropwizard.auth.AuthFactory
-import io.dropwizard.auth.basic.BasicAuthFactory
+//import io.dropwizard.auth.AuthFactory
+//import io.dropwizard.auth.basic.BasicAuthFactory
 
 /**
  * Main application class.
@@ -51,16 +54,17 @@ class SkeletonApplication extends Application<Configuration> {
     public void run(Configuration configuration, Environment environment) {
         Resource.loadProperties()
         BuildInfoManager buildInfoManager = new BuildInfoManager()
-
         registerAppManagerLogic(environment, buildInfoManager)
 
         environment.jersey().register(new InfoResource(buildInfoManager.getInfo()))
-        environment.jersey().register(
-                AuthFactory.binder(
-                        new BasicAuthFactory<AuthenticatedUser>(
-                                new BasicAuthenticator(configuration.getCredentialsList()),
-                                'SkeletonApplication',
-                                AuthenticatedUser.class)))
+        environment.jersey().register(new AuthDynamicFeature(
+                new BasicCredentialAuthFilter.Builder<AuthenticatedUser>()
+                .setAuthenticator(new BasicAuthenticator(configuration.getCredentialsList()))
+                .setRealm('SkeletonApplication')
+                .buildAuthFilter()
+        ))
+        environment.jersey().register(new AuthValueFactoryProvider.Binder
+                <AuthenticatedUser>(AuthenticatedUser.class))
     }
 
     /**
