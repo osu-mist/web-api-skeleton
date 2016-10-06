@@ -42,7 +42,8 @@ class ResourceTest {
             'pageNumber': 2,
             'pageSize': 10,
         ]
-        assert resource.getPaginationUrl(params) == 'https://api.oregonstate.edu/v1/test?page%5Bnumber%5D=2&page%5Bsize%5D=10'
+        assert resource.getPaginationUrl(params) ==
+            'https://api.oregonstate.edu/v1/test?page%5Bnumber%5D=2&page%5Bsize%5D=10'
 
         // Old page numbers are ignored
         params = [
@@ -56,7 +57,8 @@ class ResourceTest {
             'page[number]': 3,
             'page[size]': 9,
         ]
-        assert resource.getPaginationUrl(params) == 'https://api.oregonstate.edu/v1/test?page%5Bnumber%5D=2&page%5Bsize%5D=10'
+        assert resource.getPaginationUrl(params) ==
+            'https://api.oregonstate.edu/v1/test?page%5Bnumber%5D=2&page%5Bsize%5D=10'
     }
 
     @Test
@@ -76,10 +78,13 @@ class ResourceTest {
     @Test
     public void testPaginationUrlEncoding() {
         // Check that getPaginationUrl correctly encodes its arguments
-        assert resource.getPaginationUrl([q: 'this is a test']) == 'https://api.oregonstate.edu/v1/test?q=this+is+a+test'
+        assert resource.getPaginationUrl([q: 'this is a test']) ==
+            'https://api.oregonstate.edu/v1/test?q=this+is+a+test'
         def lineNoise = '+&= ://?@# \'\"\\'
-        assert resource.getPaginationUrl([q: lineNoise]) == 'https://api.oregonstate.edu/v1/test?q=%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C'
-        assert resource.getPaginationUrl([(lineNoise): 'q']) == 'https://api.oregonstate.edu/v1/test?%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C=q'
+        assert resource.getPaginationUrl([q: lineNoise]) ==
+            'https://api.oregonstate.edu/v1/test?q=%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C'
+        assert resource.getPaginationUrl([(lineNoise): 'q']) ==
+            'https://api.oregonstate.edu/v1/test?%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C=q'
     }
 
     @Test
