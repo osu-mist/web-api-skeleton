@@ -14,6 +14,10 @@ class MockUriInfo implements UriInfo {
         this.queryParameters = queryParameters
     }
 
+    public void setQueryParameters(MultivaluedMap<String,String> queryParameters) {
+        this.queryParameters = queryParameters
+    }
+
     @Override
     MultivaluedMap<String,String> getQueryParameters(boolean decode) { this.queryParameters }
     @Override

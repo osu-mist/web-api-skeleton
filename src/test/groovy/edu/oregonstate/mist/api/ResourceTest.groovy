@@ -81,4 +81,51 @@ class ResourceTest {
         assert resource.getPaginationUrl([q: lineNoise]) == 'https://api.oregonstate.edu/v1/test?q=%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C'
         assert resource.getPaginationUrl([(lineNoise): 'q']) == 'https://api.oregonstate.edu/v1/test?%2B%26%3D+%3A%2F%2F%3F%40%23+%27%22%5C=q'
     }
+
+    @Test
+    public void testGetPageNumber() {
+        // just checking
+        assert Resource.DEFAULT_PAGE_NUMBER == 1
+
+        /* Missing or invalid values -> default page number */
+        MockUriInfo uriInfo = new MockUriInfo(new URI(), new MultivaluedHashMap())
+        resource.uriInfo = uriInfo
+
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '']))
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': 'abc']))
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '2.0']))
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
+
+        // Fails
+        //uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '-1']))
+        //assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
+
+        /* Valid values */
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '0']))
+        assert resource.getPageNumber() == 0
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '1']))
+        assert resource.getPageNumber() == 1
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '2']))
+        assert resource.getPageNumber() == 2
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '9']))
+        assert resource.getPageNumber() == 9
+
+        // one billion
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '1000000000']))
+        assert resource.getPageNumber() == 1000000000
+
+        // ten billion (fails)
+        //uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '10000000000']))
+        //assert resource.getPageNumber() == 10000000000
+    }
 }
