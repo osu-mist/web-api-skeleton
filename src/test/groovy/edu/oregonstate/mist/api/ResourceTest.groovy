@@ -8,15 +8,17 @@ import org.junit.Before
 @groovy.transform.TypeChecked
 class ResourceTest {
     private Resource resource
+    private MockUriInfo uriInfo
 
     @Before
     public void setup() {
         URI uri = new URI('https://api.oregonstate.edu/v1/test')
+        uriInfo = new MockUriInfo(uri, new MultivaluedHashMap())
         resource = new Resource() {}
-        resource.uriInfo = new MockUriInfo(uri, new MultivaluedHashMap())
+        resource.uriInfo = uriInfo
         resource.setEndpointUri(uri)
     }
-    
+
     @Test
     public void testPaginationUrlNoParams() {
         assert resource.getPaginationUrl([:]) == 'https://api.oregonstate.edu/v1/test'
@@ -94,9 +96,6 @@ class ResourceTest {
         assert Resource.DEFAULT_PAGE_NUMBER == 1
 
         /* Missing or invalid values -> default page number */
-        MockUriInfo uriInfo = new MockUriInfo(new URI(), new MultivaluedHashMap())
-        resource.uriInfo = uriInfo
-
         assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
 
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '']))
@@ -148,9 +147,6 @@ class ResourceTest {
         assert Resource.DEFAULT_PAGE_SIZE == 10
 
         /* Missing or invalid values -> default page size */
-        MockUriInfo uriInfo = new MockUriInfo(new URI(), new MultivaluedHashMap())
-        resource.uriInfo = uriInfo
-
         assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
 
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '']))
