@@ -51,6 +51,7 @@ class ResourceTest {
             'page[size]': 10,
         ]
         assert resource.getPaginationUrl(params) == 'https://api.oregonstate.edu/v1/test'
+
         params = [
             'pageNumber': 2,
             'pageSize': 10,
@@ -132,5 +133,66 @@ class ResourceTest {
         // ten billion (fails)
         //uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '10000000000']))
         //assert resource.getPageNumber() == 10000000000
+
+        // Repeated values default to the first
+        def params = new MultivaluedHashMap()
+        params.add('page[number]', '2')
+        params.add('page[number]', '3')
+        uriInfo.setQueryParameters(params)
+        assert resource.getPageNumber() == 2
+    }
+
+    @Test
+    public void testGetPageSize() {
+        // just checking
+        assert Resource.DEFAULT_PAGE_SIZE == 10
+
+        /* Missing or invalid values -> default page size */
+        MockUriInfo uriInfo = new MockUriInfo(new URI(), new MultivaluedHashMap())
+        resource.uriInfo = uriInfo
+
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '']))
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': 'abc']))
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '2.0']))
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
+
+        // Fails
+        //uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '-1']))
+        //assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
+
+        /* Valid values */
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '0']))
+        assert resource.getPageSize() == 0
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '1']))
+        assert resource.getPageSize() == 1
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '2']))
+        assert resource.getPageSize() == 2
+
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '9']))
+        assert resource.getPageSize() == 9
+
+        // one billion
+        uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '1000000000']))
+        assert resource.getPageSize() == 1000000000
+
+        // ten billion (fails)
+        //uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '10000000000']))
+        //assert resource.getPageSize() == 10000000000
+
+        // Repeated values default to the first
+        def params = new MultivaluedHashMap()
+        params.add('page[size]', '2')
+        params.add('page[size]', '3')
+        uriInfo.setQueryParameters(params)
+        assert resource.getPageSize() == 2
     }
 }
