@@ -7,7 +7,7 @@ import edu.oregonstate.mist.api.InfoResource
 import edu.oregonstate.mist.api.AuthenticatedUser
 import edu.oregonstate.mist.api.BasicAuthenticator
 import edu.oregonstate.mist.api.jsonapi.GenericExceptionMapper
-import edu.oregonstate.mist.api.jsonapi.IOExceptionMapper
+import edu.oregonstate.mist.api.jsonapi.NotFoundExceptionMapper
 import io.dropwizard.Application
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
@@ -37,7 +37,7 @@ class SkeletonApplication extends Application<Configuration> {
 
         environment.lifecycle().manage(buildInfoManager)
 
-        environment.jersey().register(new IOExceptionMapper())
+        environment.jersey().register(new NotFoundExceptionMapper())
         environment.jersey().register(new GenericExceptionMapper())
     }
 
