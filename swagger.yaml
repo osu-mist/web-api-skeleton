@@ -22,11 +22,22 @@ paths:
     get:
       summary: Get information
       description: Build and runtime information about the application.
+      parameters:
+        - $ref: '#/parameters/pretty'
       responses:
         200:
           description: Object containing information
           schema:
             $ref: '#/definitions/Info'
+
+parameters:
+  pretty:
+    name: pretty
+    in: query
+    type: boolean
+    required: false
+    description: If true, JSON response will be pretty-printed
+
 definitions:
   Info:
     properties:
