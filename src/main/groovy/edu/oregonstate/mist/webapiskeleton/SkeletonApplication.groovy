@@ -6,6 +6,7 @@ import edu.oregonstate.mist.api.Resource
 import edu.oregonstate.mist.api.InfoResource
 import edu.oregonstate.mist.api.AuthenticatedUser
 import edu.oregonstate.mist.api.BasicAuthenticator
+import edu.oregonstate.mist.api.PrettyPrintResponseFilter
 import edu.oregonstate.mist.api.jsonapi.GenericExceptionMapper
 import edu.oregonstate.mist.api.jsonapi.NotFoundExceptionMapper
 import io.dropwizard.Application
@@ -28,6 +29,7 @@ class SkeletonApplication extends Application<Configuration> {
 
     /**
      * Registers lifecycle managers and Jersey exception mappers
+     * and container response filters
      *
      * @param environment
      * @param buildInfoManager
@@ -39,6 +41,7 @@ class SkeletonApplication extends Application<Configuration> {
 
         environment.jersey().register(new NotFoundExceptionMapper())
         environment.jersey().register(new GenericExceptionMapper())
+        environment.jersey().register(new PrettyPrintResponseFilter())
     }
 
     /**
