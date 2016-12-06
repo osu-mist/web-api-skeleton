@@ -153,7 +153,7 @@ abstract class Resource {
      */
     protected Integer getPageNumber() {
         def pageNumber = uriInfo.getQueryParameters().getFirst('page[number]')
-        if (!pageNumber || !pageNumber.isInteger()) {
+        if (!pageNumber || !pageNumber.isInteger() || pageNumber.toInteger() < 0) {
             return DEFAULT_PAGE_NUMBER
         }
 
@@ -167,7 +167,7 @@ abstract class Resource {
      */
     protected Integer getPageSize() {
         def pageSize = uriInfo.getQueryParameters().getFirst('page[size]')
-        if (!pageSize || !pageSize.isInteger()) {
+        if (!pageSize || !pageSize.isInteger() || pageSize.toInteger() < 0) {
             return DEFAULT_PAGE_SIZE
         }
 
