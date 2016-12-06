@@ -133,7 +133,7 @@ class ResourceTest {
         // negative number (succeeds, should fail)
         // FIXME
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '-1']))
-        assert resource.getPageNumber() == -1
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
 
         // Repeated values default to the first
         def params = new MultivaluedHashMap()
@@ -186,7 +186,7 @@ class ResourceTest {
         // negative number (succeeds, should fail)
         // FIXME
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '-1']))
-        assert resource.getPageSize() == -1
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
 
         // Repeated values default to the first
         def params = new MultivaluedHashMap()
