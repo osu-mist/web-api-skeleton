@@ -3,7 +3,6 @@ package edu.oregonstate.mist.api
 import io.dropwizard.auth.Authenticator
 import io.dropwizard.auth.AuthenticationException
 import io.dropwizard.auth.basic.BasicCredentials
-import com.google.common.base.Optional
 
 /**
  * Class which authenticates user-provided credentials.
@@ -21,7 +20,7 @@ class BasicAuthenticator implements Authenticator<BasicCredentials, Authenticate
         if (valid(basicCredentials)) {
             return Optional.of(new AuthenticatedUser(basicCredentials.username))
         } else {
-            return Optional.absent()
+            return Optional.empty()
         }
     }
 
