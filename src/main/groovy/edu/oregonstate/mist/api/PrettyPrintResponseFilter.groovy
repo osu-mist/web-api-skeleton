@@ -21,20 +21,22 @@ public class PrettyPrintResponseFilter implements ContainerResponseFilter {
         MultivaluedMap<String, String> queryParams =
             requestContext.getUriInfo().getQueryParameters()
 
-        if (queryParams.getFirst('pretty').equalsIgnoreCase('true')) {
-            ObjectWriterInjector.set(new ObjectWriterModifier() {
-                @Override
-                public ObjectWriter modify(
-                    EndpointConfigBase<?> endpoint,
-                    MultivaluedMap<String, Object> responseHeaders,
-                    Object valueToWrite,
-                    ObjectWriter w,
-                    JsonGenerator g
-                ) {
-                    g.useDefaultPrettyPrinter()
-                    w
-                }
-            })
+        if (queryParams.getFirst('pretty')) {
+            if (queryParams.getFirst('pretty').equalsIgnoreCase('true')) {
+                ObjectWriterInjector.set(new ObjectWriterModifier() {
+                    @Override
+                    public ObjectWriter modify(
+                        EndpointConfigBase<?> endpoint,
+                        MultivaluedMap<String, Object> responseHeaders,
+                        Object valueToWrite,
+                        ObjectWriter w,
+                        JsonGenerator g
+                    ) {
+                        g.useDefaultPrettyPrinter()
+                        w
+                    }
+                })
+            }
         }
     }
 
