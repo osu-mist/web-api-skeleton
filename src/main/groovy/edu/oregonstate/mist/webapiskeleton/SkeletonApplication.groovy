@@ -1,6 +1,5 @@
 package edu.oregonstate.mist.webapiskeleton
 
-import com.google.common.base.Charsets
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundleConfiguration
 import edu.oregonstate.mist.api.BuildInfoManager
@@ -31,7 +30,7 @@ class SkeletonApplication extends Application<Configuration> {
     @Override
     public void initialize(Bootstrap<Configuration> bootstrap) {
         bootstrap.addBundle(new TemplateConfigBundle(
-                new TemplateConfigBundleConfiguration().charset(Charsets.US_ASCII)
+                new TemplateConfigBundleConfiguration().charset()
         ))
     }
 
