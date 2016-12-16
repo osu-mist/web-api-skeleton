@@ -43,6 +43,7 @@ dependencies {
     compile "io.dropwizard:dropwizard-core:${dropwizardVersion}"
     compile "io.dropwizard:dropwizard-auth:${dropwizardVersion}"
     compile "io.dropwizard:dropwizard-client:${dropwizardVersion}"
+    compile "de.thomaskrille:dropwizard-template-config:1.4.0"
     // compile "io.dropwizard:dropwizard-jdbi:${dropwizardVersion}"
     // compile ':ojdbc6_g:'
 }

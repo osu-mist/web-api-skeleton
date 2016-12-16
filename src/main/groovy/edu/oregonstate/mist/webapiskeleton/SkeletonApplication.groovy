@@ -1,5 +1,6 @@
 package edu.oregonstate.mist.webapiskeleton
 
+import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle
 import edu.oregonstate.mist.api.BuildInfoManager
 import edu.oregonstate.mist.api.Configuration
 import edu.oregonstate.mist.api.Resource
@@ -26,7 +27,9 @@ class SkeletonApplication extends Application<Configuration> {
      * @param bootstrap
      */
     @Override
-    public void initialize(Bootstrap<Configuration> bootstrap) {}
+    public void initialize(Bootstrap<Configuration> bootstrap) {
+        bootstrap.addBundle(new TemplateConfigBundle())
+    }
 
     /**
      * Registers lifecycle managers and Jersey exception mappers
