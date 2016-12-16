@@ -1,7 +1,6 @@
 package edu.oregonstate.mist.webapiskeleton
 
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle
-import de.thomaskrille.dropwizard_template_config.TemplateConfigBundleConfiguration
 import edu.oregonstate.mist.api.BuildInfoManager
 import edu.oregonstate.mist.api.Configuration
 import edu.oregonstate.mist.api.Resource
@@ -29,9 +28,7 @@ class SkeletonApplication extends Application<Configuration> {
      */
     @Override
     public void initialize(Bootstrap<Configuration> bootstrap) {
-        bootstrap.addBundle(new TemplateConfigBundle(
-                new TemplateConfigBundleConfiguration().charset()
-        ))
+        bootstrap.addBundle(new TemplateConfigBundle())
     }
 
     /**
