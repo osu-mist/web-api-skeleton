@@ -5,6 +5,7 @@ if [ "$2" = "yes" ]
         WORKDIR=`pwd`
         cd src/main/groovy/edu/oregonstate/mist/contrib
         git reset --hard "$3"
+        cd "$WORKDIR"
         rm -rf src/main/groovy/edu/oregonstate/mist/contrib/.git/
         rm src/main/groovy/edu/oregonstate/mist/contrib/.gitignore
 fi
