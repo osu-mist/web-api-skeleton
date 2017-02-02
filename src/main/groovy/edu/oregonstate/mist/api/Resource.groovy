@@ -94,6 +94,22 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an HTTP 409 ("conflict") response with an error message as body.
+     *
+     * @return conflict response builder
+     */
+    protected static ResponseBuilder conflict() {
+        ResponseBuilder responseBuilder = Response.status(Response.Status.CONFLICT)
+        responseBuilder.entity(new Error(
+                status: 409,
+                developerMessage: properties.get('conflict.developerMessage'),
+                userMessage: properties.get('conflict.userMessage'),
+                code: Integer.parseInt(properties.get('conflict.code')),
+                details: properties.get('conflict.details')
+        ))
+    }
+
+    /**
      * Returns a builder for an HTTP 500 ("internal server error") response with an error message
      * as body.
      *
