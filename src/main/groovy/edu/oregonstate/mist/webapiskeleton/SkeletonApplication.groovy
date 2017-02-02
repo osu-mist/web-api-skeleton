@@ -14,8 +14,10 @@ import io.dropwizard.Application
 import io.dropwizard.auth.AuthDynamicFeature
 import io.dropwizard.auth.AuthValueFactoryProvider
 import io.dropwizard.auth.basic.BasicCredentialAuthFilter
+import io.dropwizard.jersey.errors.LoggingExceptionMapper
 import io.dropwizard.setup.Bootstrap
 import io.dropwizard.setup.Environment
+import javax.ws.rs.WebApplicationException
 
 /**
  * Main application class.
@@ -45,6 +47,7 @@ class SkeletonApplication extends Application<Configuration> {
 
         environment.jersey().register(new NotFoundExceptionMapper())
         environment.jersey().register(new GenericExceptionMapper())
+        environment.jersey().register(new LoggingExceptionMapper<WebApplicationException>(){})
         environment.jersey().register(new PrettyPrintResponseFilter())
     }
 
