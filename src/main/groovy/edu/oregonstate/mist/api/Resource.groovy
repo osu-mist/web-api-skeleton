@@ -136,16 +136,18 @@ abstract class Resource {
      * The path is copied from the request path.
      * The query parameters are taken from the params argument.
      *
-     * Falsey params are omitted from the url.
+     * Falsely params are omitted from the url.
      * The parameters pageNumber and pageSize are
      * converted to page[number] and page[size].
      *
      * @param params a map of query parameters for the url
+     * @param resourceEndpoint: the endpoint to be appended on the uri.
      * @return the url
      */
-    protected String getPaginationUrl(Map params) {
-        URIBuilder uriBuilder = new URIBuilder(endpointUri).setPath(uriInfo.requestUri.path)
+    protected String getPaginationUrl(Map params, String resourceEndpoint) {
+        String path = endpointUri.path + resourceEndpoint
 
+        URIBuilder uriBuilder = new URIBuilder(endpointUri).setPath(path)
         // use a copy of params since other parameters could be present
         def nonNullParams = params.clone()
         nonNullParams.remove('pageSize')
