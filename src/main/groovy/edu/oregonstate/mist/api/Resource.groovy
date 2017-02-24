@@ -4,6 +4,8 @@ import javax.ws.rs.core.Context
 import javax.ws.rs.core.Response
 import javax.ws.rs.core.Response.ResponseBuilder
 import org.apache.http.client.utils.URIBuilder
+
+import javax.ws.rs.core.UriBuilder
 import javax.ws.rs.core.UriInfo
 
 /**
@@ -145,9 +147,8 @@ abstract class Resource {
      * @return the url
      */
     protected String getPaginationUrl(Map params, String resourceEndpoint) {
-        String path = endpointUri.path + resourceEndpoint
-
-        URIBuilder uriBuilder = new URIBuilder(endpointUri).setPath(path)
+        URI baseUri = UriBuilder.fromUri(endpointUri).path(resourceEndpoint).build()
+        URIBuilder uriBuilder = new URIBuilder(endpointUri).setPath(baseUri.path)
         // use a copy of params since other parameters could be present
         def nonNullParams = params.clone()
         nonNullParams.remove('pageSize')
