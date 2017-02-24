@@ -136,7 +136,7 @@ abstract class Resource {
      * The path is copied from the request path.
      * The query parameters are taken from the params argument.
      *
-     * Falsely params are omitted from the url.
+     * Falsey params are omitted from the url.
      * The parameters pageNumber and pageSize are
      * converted to page[number] and page[size].
      *
