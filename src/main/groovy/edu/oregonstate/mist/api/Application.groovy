@@ -1,13 +1,6 @@
 package edu.oregonstate.mist.api
 
 import de.thomaskrille.dropwizard_template_config.TemplateConfigBundle
-import edu.oregonstate.mist.api.BuildInfoManager
-import edu.oregonstate.mist.api.Configuration
-import edu.oregonstate.mist.api.Resource
-import edu.oregonstate.mist.api.InfoResource
-import edu.oregonstate.mist.api.AuthenticatedUser
-import edu.oregonstate.mist.api.BasicAuthenticator
-import edu.oregonstate.mist.api.PrettyPrintResponseFilter
 import edu.oregonstate.mist.api.jsonapi.GenericExceptionMapper
 import edu.oregonstate.mist.api.jsonapi.NotFoundExceptionMapper
 import io.dropwizard.auth.AuthDynamicFeature
@@ -35,7 +28,7 @@ class Application<T extends Configuration> extends io.dropwizard.Application<T> 
     /**
      * Performs common application setup logic.
      *
-     * Currently this includes loading Resource properties,
+     * Currently this includes loading Error properties,
      * registering InfoResource, starting the build info lifecycle manager,
      * installing Jersey exception mappers, installing the pretty print filter,
      * and registering an authentication handler.
@@ -46,8 +39,6 @@ class Application<T extends Configuration> extends io.dropwizard.Application<T> 
      * @param environment
      */
     protected void setup(T configuration, Environment environment) {
-        Resource.loadProperties()
-
         BuildInfoManager buildInfoManager = new BuildInfoManager()
         environment.lifecycle().manage(buildInfoManager)
 

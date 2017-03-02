@@ -12,8 +12,6 @@ import javax.ws.rs.core.UriInfo
  * Abstract class for reusing common response messages.
  */
 abstract class Resource {
-    protected static Properties properties = new Properties()
-
     /**
      * Default page number used in pagination
      */
@@ -32,12 +30,13 @@ abstract class Resource {
      */
     private URI endpointUri
 
-    public static loadProperties() {
-        def stream = this.getResourceAsStream('resource.properties')
-        if (stream == null) {
-            throw new Exception("couldn't open resource.properties")
-        }
-        properties.load(stream)
+    /**
+     * Set the base URI used to provide JSON-API pagination links.
+     *
+     * @param endpointUri the base URI
+     */
+    void setEndpointUri(URI endpointUri) {
+        this.endpointUri = endpointUri
     }
 
     /**
@@ -47,8 +46,7 @@ abstract class Resource {
      * @return ok response builder
      */
     protected static ResponseBuilder ok(Object entity) {
-        ResponseBuilder responseBuilder = Response.ok()
-        responseBuilder.entity(entity)
+        Response.ok().entity(entity)
     }
 
     /**
@@ -58,8 +56,8 @@ abstract class Resource {
      * @return created response builder
      */
     protected static ResponseBuilder created(Object entity) {
-        ResponseBuilder responseBuilder = Response.status(Response.Status.CREATED)
-        responseBuilder.entity(entity)
+        Response.status(Response.Status.CREATED)
+                .entity(entity)
     }
 
     /**
@@ -69,14 +67,8 @@ abstract class Resource {
      * @return bad request response builder
      */
     protected static ResponseBuilder badRequest(String message) {
-        ResponseBuilder responseBuilder = Response.status(Response.Status.BAD_REQUEST)
-        responseBuilder.entity(new Error(
-                status: 400,
-                developerMessage: message,
-                userMessage: properties.get('badRequest.userMessage'),
-                code: Integer.parseInt(properties.get('badRequest.code')),
-                details: properties.get('badRequest.details')
-        ))
+        Response.status(Response.Status.BAD_REQUEST)
+                .entity(Error.badRequest(message))
     }
 
     /**
@@ -85,14 +77,8 @@ abstract class Resource {
      * @return not found response builder
      */
     protected static ResponseBuilder notFound() {
-        ResponseBuilder responseBuilder = Response.status(Response.Status.NOT_FOUND)
-        responseBuilder.entity(new Error(
-                status: 404,
-                developerMessage: properties.get('notFound.developerMessage'),
-                userMessage: properties.get('notFound.userMessage'),
-                code: Integer.parseInt(properties.get('notFound.code')),
-                details: properties.get('notFound.details')
-        ))
+        Response.status(Response.Status.NOT_FOUND)
+                .entity(Error.notFound())
     }
 
     /**
@@ -101,14 +87,8 @@ abstract class Resource {
      * @return conflict response builder
      */
     protected static ResponseBuilder conflict() {
-        ResponseBuilder responseBuilder = Response.status(Response.Status.CONFLICT)
-        responseBuilder.entity(new Error(
-                status: 409,
-                developerMessage: properties.get('conflict.developerMessage'),
-                userMessage: properties.get('conflict.userMessage'),
-                code: Integer.parseInt(properties.get('conflict.code')),
-                details: properties.get('conflict.details')
-        ))
+        Response.status(Response.Status.CONFLICT)
+                .entity(Error.conflict())
     }
 
     /**
@@ -118,18 +98,8 @@ abstract class Resource {
      * @return internal server error response builder
      */
     protected static ResponseBuilder internalServerError(String message) {
-        ResponseBuilder responseBuilder = Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-        responseBuilder.entity(new Error(
-                status: 500,
-                developerMessage: message,
-                userMessage: properties.get('internalServerError.userMessage'),
-                code: Integer.parseInt(properties.get('internalServerError.code')),
-                details: properties.get('internalServerError.details')
-        ))
-    }
-
-    void setEndpointUri(URI endpointUri) {
-        this.endpointUri = endpointUri
+        Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                .entity(Error.internalServerError(message))
     }
 
     /**
