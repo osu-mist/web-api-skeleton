@@ -22,6 +22,11 @@ abstract class Resource {
      */
     public static final Integer DEFAULT_PAGE_SIZE = 10
 
+    /**
+     * Default max page size used in pagination.
+     */
+    public static final Integer MAX_PAGE_SIZE = 10000
+
     @Context
     UriInfo uriInfo
 
@@ -69,6 +74,18 @@ abstract class Resource {
     protected static ResponseBuilder badRequest(String message) {
         Response.status(Response.Status.BAD_REQUEST)
                 .entity(Error.badRequest(message))
+    }
+
+    /**
+     * Returns a builder for an HTTP 400 when page[size] exceeds MAX_PAGE_SIZE
+     *
+     * @return bad request response builder
+     */
+    protected static ResponseBuilder pageSizeExceededError() {
+        Response.status(Response.Status.BAD_REQUEST)
+                .entity(Error.badRequest(
+                "page[size] cannot exceed ${MAX_PAGE_SIZE}."
+        ))
     }
 
     /**
@@ -161,5 +178,14 @@ abstract class Resource {
         }
 
         pageSize.toInteger()
+    }
+
+    /**
+     * Returns true if page[size] exceeds MAX_PAGE_SIZE
+     *
+     * @return
+     */
+    protected Boolean maxPageSizeExceeded() {
+        getPageSize() > MAX_PAGE_SIZE
     }
 }
