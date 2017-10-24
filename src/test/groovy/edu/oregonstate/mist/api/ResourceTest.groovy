@@ -103,7 +103,7 @@ class ResourceTest {
 
         /* Valid values */
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '0']))
-        assert resource.getPageNumber() == 0
+        assert resource.getPageNumber() == Resource.DEFAULT_PAGE_NUMBER
 
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[number]': '1']))
         assert resource.getPageNumber() == 1
@@ -156,7 +156,7 @@ class ResourceTest {
 
         /* Valid values */
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '0']))
-        assert resource.getPageSize() == 0
+        assert resource.getPageSize() == Resource.DEFAULT_PAGE_SIZE
 
         uriInfo.setQueryParameters(new MultivaluedHashMap(['page[size]': '1']))
         assert resource.getPageSize() == 1
