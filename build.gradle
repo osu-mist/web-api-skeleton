@@ -102,6 +102,21 @@ task writeBuildProperties << {
 }
 processResources.dependsOn writeBuildProperties
 
+// loadProperties reads a .properties file
+Properties loadProperties(String filename) {
+    Reader reader = new File(filename).newReader()
+    Properties props = new Properties()
+    props.load(reader)
+    return props
+}
+
+task printEnv(type: Exec) {
+    commandLine "env"
+    if (project.hasProperty('environmentFile')) {
+        environment(loadProperties(environmentFile))
+    }
+}
+
 // https://docs.gradle.org/current/dsl/org.gradle.api.tasks.javadoc.Groovydoc.html
 build.dependsOn shadowJar, groovydoc, cloneContribFiles
 
@@ -110,4 +125,8 @@ task run(type: JavaExec, dependsOn: build) {
     main = "${mainClass}"
     classpath = sourceSets.main.runtimeClasspath
     args = ['server', configurationFile]
+
+    if (project.hasProperty('environmentFile')) {
+        environment(loadProperties(environmentFile))
+    }
 }
