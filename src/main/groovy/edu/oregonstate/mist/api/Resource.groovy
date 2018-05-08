@@ -66,6 +66,16 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an HTTP 202 ("accepted") response with the argument entity as body.
+     * @param entity
+     * @return
+     */
+    protected static ResponseBuilder accepted(Object entity) {
+        Response.status(Response.Status.ACCEPTED)
+                .entity(entity)
+    }
+
+    /**
      * Returns a builder for an HTTP 400 ("bad request") response with an error message as body.
      *
      * @param message
