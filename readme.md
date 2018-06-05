@@ -80,7 +80,7 @@ Open with `File` -> `Open Project`.
 
 Copy [configuration-example.yaml](configuration-example.yaml) to `configuration.yaml`. Modify as necessary, being careful to avoid committing sensitive data.
 
-Please refer to [Location Frontend API](https://wiki.library.oregonstate.edu/confluence/display/CO/Location+Frontend+API) for `locations` session configuration
+### Build
 
 Build the project:
 
