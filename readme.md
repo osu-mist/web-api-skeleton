@@ -66,7 +66,7 @@ List all tasks runnable from root project:
 $ gradle tasks
 ```
 
-### IntelliJ IDEA
+## IntelliJ IDEA
 
 Generate IntelliJ IDEA project:
 
@@ -76,7 +76,7 @@ $ gradle idea
 
 Open with `File` -> `Open Project`.
 
-### Configure
+## Configure
 
 Copy [configuration-example.yaml](configuration-example.yaml) to `configuration.yaml`. Modify as necessary, being careful to avoid committing sensitive data.
 
