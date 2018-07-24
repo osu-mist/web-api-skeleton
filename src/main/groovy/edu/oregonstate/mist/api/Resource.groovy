@@ -76,6 +76,15 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an HTTP 204 ("no content") response.
+     * @param entity
+     * @return
+     */
+    protected static ResponseBuilder noContent() {
+        Response.status(Response.Status.NO_CONTENT)
+    }
+
+    /**
      * Returns a builder for an HTTP 400 ("bad request") response with an error message as body.
      *
      * @param message
