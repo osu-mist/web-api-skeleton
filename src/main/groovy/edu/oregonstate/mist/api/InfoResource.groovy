@@ -6,6 +6,7 @@ import javax.ws.rs.GET
 import javax.ws.rs.Produces
 import javax.ws.rs.core.MediaType
 import javax.ws.rs.core.Response
+import edu.oregonstate.mist.api.jsonapi.ResultObject
 
 /**
  * Information resource class.
@@ -25,7 +26,7 @@ class InfoResource extends Resource {
      */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getInfo(@Auth AuthenticatedUser authenticatedUser) {
-        Response.ok(info).build()
+    public Response getInfo(AuthenticatedUser authenticatedUser) {
+        Response.ok(new ResultObject(meta: info)).build()
     }
 }

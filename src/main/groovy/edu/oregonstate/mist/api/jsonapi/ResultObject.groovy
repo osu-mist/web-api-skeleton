@@ -17,7 +17,18 @@ class ResultObject {
      * When the request is for a single object, data will hold an instance of
      * ResourceObject.
      *
-     * @required
+     * @required if meta object is null, @optional otherwise
      */
     def data
+
+    /**
+     * Holds build and runtime information about the application
+     * When the request is for a list of objects, data will hold a list of
+     * ResourceObjects or an empty list.
+     * When the request is for a single object, data will hold an instance of
+     * ResourceObject.
+     *
+     * @required if data object is null, @optional otherwise
+     */
+    def meta
 }
