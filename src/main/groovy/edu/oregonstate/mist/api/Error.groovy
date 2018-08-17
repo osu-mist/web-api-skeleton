@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  * Error representation class.
  */
 class Error {
-    Integer status
-    String developerMessage
-    String userMessage
-    Integer code
-    String details
+    String status
+    String links
+    String code
+    String title
+    String detail
 
     @JsonIgnore
     private static Properties prop = new Properties()
@@ -37,7 +37,7 @@ class Error {
     static ErrorResultObject badRequest(String message) {
         new ErrorResultObject(
             errors: [new Error(
-                         status: 400,
+                         status: "400",
                          developerMessage: message,
                          userMessage: prop.getProperty('badRequest.userMessage'),
                          code: parseInt(prop.getProperty('badRequest.code')),
@@ -55,7 +55,7 @@ class Error {
     static ErrorResultObject notFound() {
         new ErrorResultObject(
             errors: [new Error(
-                         status: 404,
+                         status: "404",
                          developerMessage: prop.getProperty('notFound.developerMessage'),
                          userMessage: prop.getProperty('notFound.userMessage'),
                          code: parseInt(prop.getProperty('notFound.code')),
@@ -73,7 +73,7 @@ class Error {
     static ErrorResultObject conflict() {
         new ErrorResultObject(
             errors: [new Error(
-                         status: 409,
+                         status: "409",
                          developerMessage: prop.getProperty('conflict.developerMessage'),
                          userMessage: prop.getProperty('conflict.userMessage'),
                          code: parseInt(prop.getProperty('conflict.code')),
@@ -92,7 +92,7 @@ class Error {
     static ErrorResultObject internalServerError(String message) {
         new ErrorResultObject(
             errors: [new Error(
-                         status: 500,
+                         status: "500",
                          developerMessage: message,
                          userMessage: prop.getProperty('internalServerError.userMessage'),
                          code: parseInt(prop.getProperty('internalServerError.code')),
