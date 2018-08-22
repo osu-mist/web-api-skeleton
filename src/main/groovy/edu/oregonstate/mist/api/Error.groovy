@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  */
 class Error {
     String status
-    String links
+    String[] links
     String code
     String title
     String detail
@@ -38,10 +38,11 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "400",
-                         developerMessage: message,
-                         userMessage: prop.getProperty('badRequest.userMessage'),
-                         code: parseInt(prop.getProperty('badRequest.code')),
-                         details: prop.getProperty('badRequest.details')
+                         links: prop.getProperty('badRequest.links')
+                            .replaceAll('\\s', '').split(','),
+                         code: prop.getProperty('badRequest.code'),
+                         title: prop.getProperty('badRequest.title'),
+                         detail: message
                          )
                     ]
             )
@@ -52,14 +53,15 @@ class Error {
      *
      * @return error
      */
-    static ErrorResultObject notFound() {
+    static ErrorResultObject notFound(String message) {
         new ErrorResultObject(
             errors: [new Error(
                          status: "404",
-                         developerMessage: prop.getProperty('notFound.developerMessage'),
-                         userMessage: prop.getProperty('notFound.userMessage'),
-                         code: parseInt(prop.getProperty('notFound.code')),
-                         details: prop.getProperty('notFound.details')
+                         links: prop.getProperty('notFound.links').split(',')
+                            .replaceAll('\\s', '').split(','),
+                         code: prop.getProperty('notFound.code'),
+                         title: prop.getProperty('notFound.title'),
+                         detail: message
                          )
                     ]
             )
@@ -70,14 +72,15 @@ class Error {
      *
      * @return error
      */
-    static ErrorResultObject conflict() {
+    static ErrorResultObject conflict(String message) {
         new ErrorResultObject(
             errors: [new Error(
                          status: "409",
-                         developerMessage: prop.getProperty('conflict.developerMessage'),
-                         userMessage: prop.getProperty('conflict.userMessage'),
-                         code: parseInt(prop.getProperty('conflict.code')),
-                         details: prop.getProperty('conflict.details')
+                         links: prop.getProperty('conflict.links').split(',')
+                            .replaceAll('\\s', '').split(','),
+                         code: prop.getProperty('conflict.code'),
+                         title: prop.getProperty('conflict.title'),
+                         detail: message
                          )
                     ]
             )
@@ -93,10 +96,11 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "500",
-                         developerMessage: message,
-                         userMessage: prop.getProperty('internalServerError.userMessage'),
-                         code: parseInt(prop.getProperty('internalServerError.code')),
-                         details: prop.getProperty('internalServerError.details')
+                         links: prop.getProperty('internalServerError.links')
+                            .replaceAll('\\s', '').split(','),
+                         code: prop.getProperty('internalServerError.code'),
+                         title: prop.getProperty('internalServerError.title'),
+                         detail: message
                          )
                     ]
             )
