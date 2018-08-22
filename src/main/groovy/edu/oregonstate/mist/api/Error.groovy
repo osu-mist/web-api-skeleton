@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  */
 class Error {
     String status
-    String[] links
+    LinkObject links
     String code
     String title
     String detail
@@ -38,8 +38,7 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "400",
-                         links: prop.getProperty('badRequest.links')
-                            .replaceAll('\\s', '').split(','),
+                         links: new LinkObject(about: prop.getProperty('badRequest.links')),
                          code: prop.getProperty('badRequest.code'),
                          title: prop.getProperty('badRequest.title'),
                          detail: message
@@ -57,8 +56,7 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "404",
-                         links: prop.getProperty('notFound.links').split(',')
-                            .replaceAll('\\s', '').split(','),
+                         links: new LinkObject(about: prop.getProperty('notFound.links')),
                          code: prop.getProperty('notFound.code'),
                          title: prop.getProperty('notFound.title'),
                          detail: message
@@ -76,8 +74,7 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "409",
-                         links: prop.getProperty('conflict.links').split(',')
-                            .replaceAll('\\s', '').split(','),
+                         links: new LinkObject(about: prop.getProperty('conflict.links')),
                          code: prop.getProperty('conflict.code'),
                          title: prop.getProperty('conflict.title'),
                          detail: message
@@ -96,8 +93,8 @@ class Error {
         new ErrorResultObject(
             errors: [new Error(
                          status: "500",
-                         links: prop.getProperty('internalServerError.links')
-                            .replaceAll('\\s', '').split(','),
+                         links: new LinkObject(
+                             about: prop.getProperty('internalServerError.links')),
                          code: prop.getProperty('internalServerError.code'),
                          title: prop.getProperty('internalServerError.title'),
                          detail: message
@@ -111,6 +108,13 @@ class Error {
             Integer.parseInt(s)
         }
     }
+}
+
+/**
+ * Object that contains an "about" link member for detailed error information
+ */
+class LinkObject {
+    String about
 }
 
 /**
