@@ -41,7 +41,7 @@ class Error {
                          links: new LinkObject(about: prop.getProperty('badRequest.links')),
                          code: prop.getProperty('badRequest.code'),
                          title: prop.getProperty('badRequest.title'),
-                         detail: message
+                         detail: message ?: prop.getProperty('badRequest.detail')
                          )
                     ]
             )
@@ -59,7 +59,7 @@ class Error {
                          links: new LinkObject(about: prop.getProperty('notFound.links')),
                          code: prop.getProperty('notFound.code'),
                          title: prop.getProperty('notFound.title'),
-                         detail: message
+                         detail: message ?: prop.getProperty('notFound.detail')
                          )
                     ]
             )
@@ -77,7 +77,7 @@ class Error {
                          links: new LinkObject(about: prop.getProperty('conflict.links')),
                          code: prop.getProperty('conflict.code'),
                          title: prop.getProperty('conflict.title'),
-                         detail: message
+                         detail: message ?: prop.getProperty('conflict.detail')
                          )
                     ]
             )
@@ -98,7 +98,7 @@ class Error {
                              about: prop.getProperty('internalServerError.links')),
                          code: prop.getProperty('internalServerError.code'),
                          title: prop.getProperty('internalServerError.title'),
-                         detail: message
+                         detail: message ?: prop.getProperty('internalServerError.detail')
                          )
                     ]
             )
