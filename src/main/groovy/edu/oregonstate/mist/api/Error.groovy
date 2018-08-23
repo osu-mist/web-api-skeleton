@@ -29,10 +29,10 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 400 ("bad request") response.
+     * Returns a new Error collection containing an Error for a HTTP 400 ("bad request") response.
      *
      * @param message the error message
-     * @return error
+     * @return errors
      */
     static ErrorResultObject badRequest(String message) {
         new ErrorResultObject(
@@ -48,9 +48,9 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 404 ("not found") response.
+     * Returns a new Error collection containing an Error for a HTTP 404 ("not found") response.
      *
-     * @return error
+     * @return errors
      */
     static ErrorResultObject notFound(String message) {
         new ErrorResultObject(
@@ -66,9 +66,9 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 409 ("conflict") response.
+     * Returns a new Error collection containing an Error for a HTTP 409 ("conflict") response.
      *
-     * @return error
+     * @return errors
      */
     static ErrorResultObject conflict(String message) {
         new ErrorResultObject(
@@ -84,10 +84,11 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 500 ("internal server error") response.
+     * Returns a new Error collection containing an Error for a HTTP 500
+     * ("internal server error") response.
      *
      * @param message the error message
-     * @return error
+     * @return errors
      */
     static ErrorResultObject internalServerError(String message) {
         new ErrorResultObject(
