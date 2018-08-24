@@ -76,6 +76,15 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an HTTP 204 ("no content") response.
+     * @param entity
+     * @return
+     */
+    protected static ResponseBuilder noContent() {
+        Response.status(Response.Status.NO_CONTENT)
+    }
+
+    /**
      * Returns a builder for an HTTP 400 ("bad request") response with an error message as body.
      *
      * @param message
@@ -96,6 +105,16 @@ abstract class Resource {
                 .entity(Error.badRequest(
                 "page[size] cannot exceed ${MAX_PAGE_SIZE}."
         ))
+    }
+
+    /**
+     * Returns a builder for an HTTP 403 ("forbidden") response with an error message as body.
+     *
+     * @return forbidden response builder
+     */
+    protected static ResponseBuilder forbidden() {
+        Response.status(Response.Status.FORBIDDEN)
+                .entity(Error.forbidden())
     }
 
     /**
