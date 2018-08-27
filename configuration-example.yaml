@@ -3,7 +3,7 @@
 ## Do not commit changes that contain credentials or sensitive data!
 
 server:
-  rootPath: /api/v0/*
+  rootPath: /api/v1/*
   applicationConnectors:
     - type: https
       port: 8080
