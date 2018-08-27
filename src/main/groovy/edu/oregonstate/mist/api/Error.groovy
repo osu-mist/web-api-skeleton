@@ -31,7 +31,7 @@ class Error {
     /**
      * Returns a new Error collection containing an Error for a HTTP 400 ("bad request") response.
      *
-     * @param message the error message
+     * @param message the detailed error message, may be occurence-specific
      * @return errors
      */
     static ErrorResultObject badRequest(String message) {
@@ -50,7 +50,8 @@ class Error {
     /**
      * Returns a new Error for a HTTP 403 ("forbidden") response.
      *
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
     static Error forbidden(String message) {
         new Error(
@@ -65,6 +66,7 @@ class Error {
     /**
      * Returns a new Error collection containing an Error for a HTTP 404 ("not found") response.
      *
+     * @param message the detailed error message, may be occurence-specific
      * @return errors
      */
     static ErrorResultObject notFound(String message) {
@@ -83,6 +85,7 @@ class Error {
     /**
      * Returns a new Error collection containing an Error for a HTTP 409 ("conflict") response.
      *
+     * @param message the detailed error message, may be occurence-specific
      * @return errors
      */
     static ErrorResultObject conflict(String message) {
@@ -102,7 +105,7 @@ class Error {
      * Returns a new Error collection containing an Error for a HTTP 500
      * ("internal server error") response.
      *
-     * @param message the error message
+     * @param message the detailed error message, may be occurence-specific
      * @return errors
      */
     static ErrorResultObject internalServerError(String message) {
