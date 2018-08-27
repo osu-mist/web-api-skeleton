@@ -48,6 +48,21 @@ class Error {
     }
 
     /**
+     * Returns a new Error for a HTTP 403 ("forbidden") response.
+     *
+     * @return error
+     */
+    static Error forbidden(String message) {
+        new Error(
+                status: "403",
+                links: new LinkObject(about: prop.getProperty('forbidden.links')),
+                code: prop.getProperty('forbidden.code'),
+                title: prop.getProperty('forbidden.title'),
+                detail: message ?: prop.getProperty('forbidden.detail')
+        )
+    }
+
+    /**
      * Returns a new Error collection containing an Error for a HTTP 404 ("not found") response.
      *
      * @return errors

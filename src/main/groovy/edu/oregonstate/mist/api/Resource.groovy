@@ -99,6 +99,16 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an HTTP 403 ("forbidden") response with an error message as body.
+     *
+     * @return forbidden response builder
+     */
+    protected static ResponseBuilder forbidden(String message) {
+        Response.status(Response.Status.FORBIDDEN)
+                .entity(Error.forbidden(message))
+    }
+
+    /**
      * Returns a builder for an HTTP 404 ("not found") response with an error message as body.
      *
      * @return not found response builder
