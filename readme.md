@@ -148,7 +148,7 @@ $ vim src/main/groovy/edu/oregonstate/mist/myapi/SkeletonApplication.class
 
 Update gradle.properties with your package name and main class.
 
-Replace swagger.yaml with your own API specification.
+Replace openapi.yaml with your own API specification.
 
 Update configuration-example.yaml as appropriate for your application.
 
@@ -192,7 +192,7 @@ $ git commit -v
 
 ## Resources
 
-The Web API definition is contained in the [Swagger specification](swagger.yaml).
+The Web API definition is contained in the [OpenAPI specification](openapi.yaml).
 
 The following examples demonstrate the use of `curl` to make authenticated HTTPS requests.
 
@@ -204,7 +204,7 @@ This resource returns build and runtime information:
     > --cacert doej.pem \
     > --user "username:password" \
     > https://localhost:8080/api/v0/
-    {"name":"web-api-skeleton","time":"2016-08-02 14:37:01-0700","unixTime":1470173821035,"commit":"e3d396e","documentation":"swagger.yaml"}
+    {"name":"web-api-skeleton","time":"2016-08-02 14:37:01-0700","unixTime":1470173821035,"commit":"e3d396e","documentation":"openapi.yaml"}
 
 NOTE: you should only specify a certificate with --cacert for local testing.
 Production servers should use a real certificate

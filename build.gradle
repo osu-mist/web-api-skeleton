@@ -89,7 +89,7 @@ task writeBuildProperties << {
     properties.setProperty('time', project.ext.buildTime.format('yyyy-MM-dd HH:mm:ssXX'))
     properties.setProperty('unixTime', jar.appendix)
     properties.setProperty('commit', jar.version)
-    properties.setProperty('documentation', 'swagger.yaml')
+    properties.setProperty('documentation', 'openapi.yaml')
     FileWriter fileWriter = new FileWriter("${projectDir}/src/main/resources/build.properties")
     properties.store(fileWriter, 'build properties')
 }

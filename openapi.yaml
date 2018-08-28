@@ -59,7 +59,7 @@ components:
           description: Git commit hash of the revision which was built.
         documentation:
           type: string
-          description: Filename of the swagger specification for the API.
+          description: Filename of the OpenAPI specification for the API.
     Error:
       properties:
         status:
