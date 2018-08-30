@@ -2,7 +2,7 @@ swagger: '2.0'
 info:
   title: Web API Skeleton
   description: Skeleton for Dropwizard Web APIs
-  version: '0.0'
+  version: '1.0'
   license:
     name: GNU Affero General Public License Version 3
     url: http://www.gnu.org/licenses/agpl-3.0.en.html
@@ -11,8 +11,8 @@ externalDocs:
   url: https://github.com/osu-mist/web-api-skeleton
 host: localhost
 schemes:
-  - http
-basePath: /api/v0
+  - https
+basePath: /api/v1
 consumes:
   - text/plain
 produces:
@@ -41,35 +41,39 @@ parameters:
 definitions:
   Info:
     properties:
-      name:
-        type: string
-        description: Name of the API.
-      time:
-        type: string
-        description: Build time in ISO 8601 format.
-      unixTime:
-        type: integer
-        description: Build time as milliseconds since the unix epoch.
-      commit:
-        type: string
-        description: Git commit hash of the revision which was built.
-      documentation:
-        type: string
-        description: Filename of the swagger specification for the API.
+      meta:
+        properties:
+          name:
+            type: string
+            description: Name of the API.
+          time:
+            type: string
+            description: Build time in ISO 8601 format.
+          unixTime:
+            type: integer
+            description: Build time as milliseconds since the unix epoch.
+          commit:
+            type: string
+            description: Git commit hash of the revision which was built.
+          documentation:
+            type: string
+            description: Filename of the swagger specification for the API.
   Error:
     properties:
       status:
-        type: integer
+        type: string
         description: HTTP status code.
-      developerMessage:
-        type: string
-        description: An error string aimed at developers.
-      userMesage:
-        type: string
-        description: An error string aimed at end users.
+      links:
+        properties:
+          about:
+            type: string
+            description: A link to further information about the error.
       code:
-        type: integer
-        description: Error code.
-      details:
         type: string
-        description: A link to further information about the error.
+        description: Error code.
+      title:
+        type: string
+        description: A short, user readable summary of the error
+      detail:
+        type: string
+        description: A long description of the error that may contain instance-specific details.

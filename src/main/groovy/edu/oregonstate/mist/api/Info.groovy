@@ -10,3 +10,10 @@ class Info {
     String commit
     String documentation
 }
+
+/**
+ * Wrapper object for returning info in a response
+ */
+class InfoResultObject {
+    Info meta
+}

@@ -203,7 +203,7 @@ This resource returns build and runtime information:
     $ curl \
     > --cacert doej.pem \
     > --user "username:password" \
-    > https://localhost:8080/api/v0/
+    > https://localhost:8080/api/v1/
     {"name":"web-api-skeleton","time":"2016-08-02 14:37:01-0700","unixTime":1470173821035,"commit":"e3d396e","documentation":"swagger.yaml"}
 
 NOTE: you should only specify a certificate with --cacert for local testing.

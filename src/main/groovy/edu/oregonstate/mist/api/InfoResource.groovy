@@ -26,6 +26,6 @@ class InfoResource extends Resource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getInfo(@Auth AuthenticatedUser authenticatedUser) {
-        Response.ok(info).build()
+        Response.ok(new InfoResultObject(meta: info)).build()
     }
 }
