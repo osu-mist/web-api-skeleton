@@ -90,7 +90,7 @@ abstract class Resource {
      * @param message
      * @return bad request response builder
      */
-    protected static ResponseBuilder badRequest(String message) {
+    protected static ResponseBuilder badRequest(String message='') {
         Response.status(Response.Status.BAD_REQUEST)
                 .entity(Error.badRequest(message))
     }
@@ -112,7 +112,7 @@ abstract class Resource {
      *
      * @return forbidden response builder
      */
-    protected static ResponseBuilder forbidden(String message) {
+    protected static ResponseBuilder forbidden(String message='') {
         Response.status(Response.Status.FORBIDDEN)
                 .entity(Error.forbidden(message))
     }
@@ -122,7 +122,7 @@ abstract class Resource {
      *
      * @return not found response builder
      */
-    protected static ResponseBuilder notFound(String message) {
+    protected static ResponseBuilder notFound(String message='') {
         Response.status(Response.Status.NOT_FOUND)
                 .entity(Error.notFound(message))
     }
@@ -132,7 +132,7 @@ abstract class Resource {
      *
      * @return conflict response builder
      */
-    protected static ResponseBuilder conflict(String message) {
+    protected static ResponseBuilder conflict(String message='') {
         Response.status(Response.Status.CONFLICT)
                 .entity(Error.conflict(message))
     }
@@ -143,7 +143,7 @@ abstract class Resource {
      *
      * @return internal server error response builder
      */
-    protected static ResponseBuilder internalServerError(String message) {
+    protected static ResponseBuilder internalServerError(String message='') {
         Response.status(Response.Status.INTERNAL_SERVER_ERROR)
                 .entity(Error.internalServerError(message))
     }
