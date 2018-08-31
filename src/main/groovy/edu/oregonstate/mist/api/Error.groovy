@@ -6,11 +6,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore
  * Error representation class.
  */
 class Error {
-    Integer status
-    String developerMessage
-    String userMessage
-    Integer code
-    String details
+    String status
+    LinkObject links
+    String code
+    String title
+    String detail
 
     @JsonIgnore
     private static Properties prop = new Properties()
@@ -29,80 +29,97 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 400 ("bad request") response.
+     * Returns a new Error collection containing an Error for a HTTP 400 ("bad request") response.
      *
-     * @param message the error message
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
-    static Error badRequest(String message) {
-        new Error(
-            status: 400,
-            developerMessage: message,
-            userMessage: prop.getProperty('badRequest.userMessage'),
-            code: parseInt(prop.getProperty('badRequest.code')),
-            details: prop.getProperty('badRequest.details')
-        )
+    static ErrorResultObject badRequest(String message) {
+        new ErrorResultObject(
+            errors: [new Error(
+                         status: "400",
+                         links: new LinkObject(about: prop.getProperty('badRequest.links')),
+                         code: prop.getProperty('badRequest.code'),
+                         title: prop.getProperty('badRequest.title'),
+                         detail: message ?: prop.getProperty('badRequest.detail')
+                         )
+                    ]
+            )
     }
 
     /**
      * Returns a new Error for a HTTP 403 ("forbidden") response.
      *
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
-    static Error forbidden() {
+    static Error forbidden(String message) {
         new Error(
-                status: 403,
-                developerMessage: prop.getProperty('forbidden.developerMessage'),
-                userMessage: prop.getProperty('forbidden.userMessage'),
-                code: parseInt(prop.getProperty('forbidden.code')),
-                details: prop.getProperty('forbidden.details')
+                status: "403",
+                links: new LinkObject(about: prop.getProperty('forbidden.links')),
+                code: prop.getProperty('forbidden.code'),
+                title: prop.getProperty('forbidden.title'),
+                detail: message ?: prop.getProperty('forbidden.detail')
         )
     }
 
     /**
-     * Returns a new Error for a HTTP 404 ("not found") response.
+     * Returns a new Error collection containing an Error for a HTTP 404 ("not found") response.
      *
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
-    static Error notFound() {
-        new Error(
-            status: 404,
-            developerMessage: prop.getProperty('notFound.developerMessage'),
-            userMessage: prop.getProperty('notFound.userMessage'),
-            code: parseInt(prop.getProperty('notFound.code')),
-            details: prop.getProperty('notFound.details')
-        )
+    static ErrorResultObject notFound(String message) {
+        new ErrorResultObject(
+            errors: [new Error(
+                         status: "404",
+                         links: new LinkObject(about: prop.getProperty('notFound.links')),
+                         code: prop.getProperty('notFound.code'),
+                         title: prop.getProperty('notFound.title'),
+                         detail: message ?: prop.getProperty('notFound.detail')
+                         )
+                    ]
+            )
     }
 
     /**
-     * Returns a new Error for a HTTP 409 ("conflict") response.
+     * Returns a new Error collection containing an Error for a HTTP 409 ("conflict") response.
      *
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
-    static Error conflict() {
-        new Error(
-            status: 409,
-            developerMessage: prop.getProperty('conflict.developerMessage'),
-            userMessage: prop.getProperty('conflict.userMessage'),
-            code: parseInt(prop.getProperty('conflict.code')),
-            details: prop.getProperty('conflict.details')
-        )
+    static ErrorResultObject conflict(String message) {
+        new ErrorResultObject(
+            errors: [new Error(
+                         status: "409",
+                         links: new LinkObject(about: prop.getProperty('conflict.links')),
+                         code: prop.getProperty('conflict.code'),
+                         title: prop.getProperty('conflict.title'),
+                         detail: message ?: prop.getProperty('conflict.detail')
+                         )
+                    ]
+            )
     }
 
     /**
-     * Returns a new Error for a HTTP 500 ("internal server error") response.
+     * Returns a new Error collection containing an Error for a HTTP 500
+     * ("internal server error") response.
      *
-     * @param message the error message
-     * @return error
+     * @param message the detailed error message, may be occurence-specific
+     * @return errors
      */
-    static Error internalServerError(String message) {
-        new Error(
-            status: 500,
-            developerMessage: message,
-            userMessage: prop.getProperty('internalServerError.userMessage'),
-            code: parseInt(prop.getProperty('internalServerError.code')),
-            details: prop.getProperty('internalServerError.details')
-        )
+    static ErrorResultObject internalServerError(String message) {
+        new ErrorResultObject(
+            errors: [new Error(
+                         status: "500",
+                         links: new LinkObject(
+                             about: prop.getProperty('internalServerError.links')),
+                         code: prop.getProperty('internalServerError.code'),
+                         title: prop.getProperty('internalServerError.title'),
+                         detail: message ?: prop.getProperty('internalServerError.detail')
+                         )
+                    ]
+            )
     }
 
     private static Integer parseInt(String s) {
@@ -111,3 +128,17 @@ class Error {
         }
     }
 }
+
+/**
+ * Object that contains an "about" link member for detailed error information
+ */
+class LinkObject {
+    String about
+}
+
+/**
+ * Wrapper object for returning error(s) in a response
+ */
+ class ErrorResultObject {
+     Error[] errors
+ }
