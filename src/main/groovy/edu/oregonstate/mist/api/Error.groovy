@@ -53,14 +53,17 @@ class Error {
      * @param message the detailed error message, may be occurence-specific
      * @return errors
      */
-    static Error forbidden(String message) {
-        new Error(
-                status: "403",
-                links: new LinkObject(about: prop.getProperty('forbidden.links')),
-                code: prop.getProperty('forbidden.code'),
-                title: prop.getProperty('forbidden.title'),
-                detail: message ?: prop.getProperty('forbidden.detail')
-        )
+    static ErrorResultObject forbidden(String message) {
+        new ErrorResultObject(
+                errors: [new Error(
+                             status: "403",
+                             links: new LinkObject(about: prop.getProperty('forbidden.links')),
+                             code: prop.getProperty('forbidden.code'),
+                             title: prop.getProperty('forbidden.title'),
+                             detail: message ?: prop.getProperty('forbidden.detail')
+                             )
+                        ]
+                )
     }
 
     /**
