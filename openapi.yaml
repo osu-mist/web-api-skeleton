@@ -78,4 +78,6 @@ components:
           description: A short, user readable summary of the error
         detail:
           type: string
-          description: A long description of the error that may contain instance-specific details.
+          description: >-
+            A long description of the error that may contain instance-specific
+            details.
