@@ -149,6 +149,28 @@ abstract class Resource {
     }
 
     /**
+     * Returns a builder for an error response with multiple errors in the errors object
+     *
+     * Usage: compoundError([notFound().build(), forbidden().build()], 400).build()
+     *
+     * @param errorResponses is a list of built error responses
+     * @param status is the HTTP response code for the compound eror response. The developer
+     *      is responsible for supplying "the most generally applicable HTTP error code"
+     * @return compound error response builder
+     */
+    protected static ResponseBuilder compoundError(Object errorResponses, int status) {
+        def errors = []
+        for (int i = 0; i < errorResponses.size(); i++) {
+            for (int j = 0; j < errorResponses[i].context.entity.errors.size(); j++) {
+                errors << errorResponses[i].context.entity.errors[j]
+            }
+        }
+        def errorEntity = new ErrorResultObject(errors: errors)
+        Response.status(status)
+                .entity(errorEntity)
+    }
+
+    /**
      * Constructs a url to use in pagination links.
      *
      * The path is copied from the request path.
