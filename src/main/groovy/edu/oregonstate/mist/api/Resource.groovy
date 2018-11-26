@@ -92,7 +92,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder badRequest(String message='') {
         Response.status(Response.Status.BAD_REQUEST)
-                .entity(Error.badRequest(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.badRequest(message)])
+                )
     }
 
     /**
@@ -102,9 +104,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder pageSizeExceededError() {
         Response.status(Response.Status.BAD_REQUEST)
-                .entity(Error.badRequest(
-                "page[size] cannot exceed ${MAX_PAGE_SIZE}."
-        ))
+                .entity(new ErrorResultObject(
+                    errors:[Error.badRequest("page[size] cannot exceed ${MAX_PAGE_SIZE}.")])
+                )
     }
 
     /**
@@ -114,7 +116,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder forbidden(String message='') {
         Response.status(Response.Status.FORBIDDEN)
-                .entity(Error.forbidden(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.forbidden(message)])
+                )
     }
 
     /**
@@ -124,7 +128,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder notFound(String message='') {
         Response.status(Response.Status.NOT_FOUND)
-                .entity(Error.notFound(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.notFound(message)])
+                )
     }
 
     /**
@@ -134,7 +140,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder conflict(String message='') {
         Response.status(Response.Status.CONFLICT)
-                .entity(Error.conflict(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.conflict(message)])
+                )
     }
 
     /**
@@ -145,7 +153,9 @@ abstract class Resource {
      */
     protected static ResponseBuilder internalServerError(String message='') {
         Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(Error.internalServerError(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.internalServerError(message)])
+                )
     }
 
     /**
@@ -158,15 +168,9 @@ abstract class Resource {
      *      is responsible for supplying "the most generally applicable HTTP error code"
      * @return compound error response builder
      */
-    protected static ResponseBuilder compoundError(
-        List<ErrorResultObject> errorResultObjects, int status) {
-            def errors = []
-            for (int i = 0; i < errorResultObjects.size(); i++) {
-                errors << errorResultObjects[i].errors[0]
-            }
-            def errorEntity = new ErrorResultObject(errors: errors)
+    protected static ResponseBuilder compoundError(List<Error> errors, int status) {
             Response.status(status)
-                    .entity(errorEntity)
+                    .entity(new ErrorResultObject(errors: errors))
     }
 
     /**
