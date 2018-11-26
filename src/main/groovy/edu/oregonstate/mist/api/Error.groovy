@@ -29,10 +29,10 @@ class Error {
     }
 
     /**
-     * Returns a new Error collection containing an Error for a HTTP 400 ("bad request") response.
+     * Returns a new Error object for a HTTP 400 ("bad request") response.
      *
      * @param message the detailed error message, may be occurence-specific
-     * @return errors
+     * @return Error
      */
     static Error badRequest(String message) {
         new Error(
@@ -45,10 +45,10 @@ class Error {
     }
 
     /**
-     * Returns a new Error for a HTTP 403 ("forbidden") response.
+     * Returns a new Error object for a HTTP 403 ("forbidden") response.
      *
      * @param message the detailed error message, may be occurence-specific
-     * @return errors
+     * @return Error
      */
     static Error forbidden(String message) {
         new Error(
@@ -61,10 +61,10 @@ class Error {
     }
 
     /**
-     * Returns a new Error collection containing an Error for a HTTP 404 ("not found") response.
+     * Returns a new Error object for a HTTP 404 ("not found") response.
      *
      * @param message the detailed error message, may be occurence-specific
-     * @return errors
+     * @return Error
      */
     static Error notFound(String message) {
         new Error(
@@ -77,10 +77,10 @@ class Error {
     }
 
     /**
-     * Returns a new Error collection containing an Error for a HTTP 409 ("conflict") response.
+     * Returns a new Error object for a HTTP 409 ("conflict") response.
      *
      * @param message the detailed error message, may be occurence-specific
-     * @return errors
+     * @return Error
      */
     static Error conflict(String message) {
         new Error(
@@ -93,11 +93,11 @@ class Error {
     }
 
     /**
-     * Returns a new Error collection containing an Error for a HTTP 500
+     * Returns a new Error object for a Error for a HTTP 500
      * ("internal server error") response.
      *
      * @param message the detailed error message, may be occurence-specific
-     * @return errors
+     * @return Error
      */
     static Error internalServerError(String message) {
         new Error(

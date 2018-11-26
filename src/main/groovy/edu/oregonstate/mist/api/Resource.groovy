@@ -85,7 +85,7 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 400 ("bad request") response with an error message as body.
+     * Returns a builder for an HTTP 400 ("bad request") response with message argument as detail
      *
      * @param message
      * @return bad request response builder
@@ -110,7 +110,7 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 403 ("forbidden") response with an error message as body.
+     * Returns a builder for an HTTP 403 ("forbidden") response with message argument as detail
      *
      * @return forbidden response builder
      */
@@ -122,7 +122,7 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 404 ("not found") response with an error message as body.
+     * Returns a builder for an HTTP 404 ("not found") response with message argument as detail
      *
      * @return not found response builder
      */
@@ -134,7 +134,7 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 409 ("conflict") response with an error message as body.
+     * Returns a builder for an HTTP 409 ("conflict") response with message argument as detail
      *
      * @return conflict response builder
      */
@@ -146,8 +146,8 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 500 ("internal server error") response with an error message
-     * as body.
+     * Returns a builder for an HTTP 500 ("internal server error") response
+     *    with message argument as detail
      *
      * @return internal server error response builder
      */
@@ -163,7 +163,7 @@ abstract class Resource {
      *
      * Usage: compoundError([Error.notFound(), Error.forbidden()], 400).build()
      *
-     * @param errorResultObjects is a list of non-compound ErrorResultObjects from the Error class
+     * @param errors is a list of Error objects
      * @param status is the HTTP response code for the compound eror response. The developer
      *      is responsible for supplying "the most generally applicable HTTP error code"
      * @return compound error response builder
