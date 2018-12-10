@@ -85,14 +85,16 @@ abstract class Resource {
     }
 
     /**
-     * Returns a builder for an HTTP 400 ("bad request") response with an error message as body.
+     * Returns a builder for an HTTP 400 ("bad request") response with message argument as detail
      *
      * @param message
      * @return bad request response builder
      */
     protected static ResponseBuilder badRequest(String message='') {
         Response.status(Response.Status.BAD_REQUEST)
-                .entity(Error.badRequest(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.badRequest(message)])
+                )
     }
 
     /**
@@ -102,50 +104,73 @@ abstract class Resource {
      */
     protected static ResponseBuilder pageSizeExceededError() {
         Response.status(Response.Status.BAD_REQUEST)
-                .entity(Error.badRequest(
-                "page[size] cannot exceed ${MAX_PAGE_SIZE}."
-        ))
+                .entity(new ErrorResultObject(
+                    errors:[Error.badRequest("page[size] cannot exceed ${MAX_PAGE_SIZE}.")])
+                )
     }
 
     /**
-     * Returns a builder for an HTTP 403 ("forbidden") response with an error message as body.
+     * Returns a builder for an HTTP 403 ("forbidden") response with message argument as detail
      *
      * @return forbidden response builder
      */
     protected static ResponseBuilder forbidden(String message='') {
         Response.status(Response.Status.FORBIDDEN)
-                .entity(Error.forbidden(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.forbidden(message)])
+                )
     }
 
     /**
-     * Returns a builder for an HTTP 404 ("not found") response with an error message as body.
+     * Returns a builder for an HTTP 404 ("not found") response with message argument as detail
      *
      * @return not found response builder
      */
     protected static ResponseBuilder notFound(String message='') {
         Response.status(Response.Status.NOT_FOUND)
-                .entity(Error.notFound(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.notFound(message)])
+                )
     }
 
     /**
-     * Returns a builder for an HTTP 409 ("conflict") response with an error message as body.
+     * Returns a builder for an HTTP 409 ("conflict") response with message argument as detail
      *
      * @return conflict response builder
      */
     protected static ResponseBuilder conflict(String message='') {
         Response.status(Response.Status.CONFLICT)
-                .entity(Error.conflict(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.conflict(message)])
+                )
     }
 
     /**
-     * Returns a builder for an HTTP 500 ("internal server error") response with an error message
-     * as body.
+     * Returns a builder for an HTTP 500 ("internal server error") response
+     *    with message argument as detail
      *
      * @return internal server error response builder
      */
     protected static ResponseBuilder internalServerError(String message='') {
         Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                .entity(Error.internalServerError(message))
+                .entity(new ErrorResultObject(
+                    errors:[Error.internalServerError(message)])
+                )
+    }
+
+    /**
+     * Returns a builder for an error response with multiple errors in the errors object
+     *
+     * Usage: compoundError([Error.notFound(), Error.forbidden()], 400).build()
+     *
+     * @param errors is a list of Error objects
+     * @param status is the HTTP response code for the compound eror response. The developer
+     *      is responsible for supplying "the most generally applicable HTTP error code"
+     * @return compound error response builder
+     */
+    protected static ResponseBuilder compoundError(List<Error> errors, int status) {
+            Response.status(status)
+                    .entity(new ErrorResultObject(errors: errors))
     }
 
     /**
